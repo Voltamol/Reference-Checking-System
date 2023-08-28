@@ -10,7 +10,65 @@
 .datatable-bottom {
 	padding: 8px 10px;
 }
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+.container-fluid:before{
+	content: " ";
+	display: table;
 
+}
+.col-xs-5{
+	float: left;
+	width: 41.66666667%;
+	position: relative;
+    min-height: 1px;
+	padding-left: 0px;
+    padding-right: 10px;
+}
+input.form-control, select.form-control, textarea.form-control {
+    box-shadow: none;
+}
+.form-control{
+	height: 40px;
+	transition: box-shadow 0s,-webkit-box-shadow 0s;
+	display: block;
+    width: 100%;
+	padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+.col-xs-7 {
+    width: 58.33333333%;
+	float: left;
+	position: relative;
+    min-height: 1px;
+	padding-left: 10px;
+    padding-right: 0px;
+}
+.container-fluid:after{
+	content: " ";
+    display: table;
+	clear: both;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-group[_ngcontent-tur-c11] [class^=col-][_ngcontent-tur-c11]:last-child {
+    padding-right: 0;
+    padding-left: 5px;
+}
+.hidden {
+    display: none!important;
+}
+.form-group[_ngcontent-tur-c11] [class^=col-][_ngcontent-tur-c11]:first-child {
+    padding-left: 0;
+    padding-right: 0px;
+}
 .datatable-top > nav:first-child,
 .datatable-top > div:first-child,
 .datatable-bottom > nav:first-child,
