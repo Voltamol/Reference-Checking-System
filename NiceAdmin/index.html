@@ -37,6 +37,10 @@
     .hidden-scroll::-webkit-scrollbar{
       display: none;
     }
+
+    .hidden{
+      display: none;
+    }
   </style>
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -153,10 +157,10 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <!--<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
             <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
+          </a>--><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
@@ -453,9 +457,9 @@
                   <h6>Filter</h6>
                 </li>
 
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
+                <li><a class="dropdown-item filter-item" href="#">Today</a></li>
+                <li><a class="dropdown-item filter-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item filter-item" href="#">This Year</a></li>
               </ul>
             </div>
 
@@ -465,7 +469,7 @@
               <div class="activity">
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">29/08/2023</div>
                   <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                   <div class="activity-content">
                     sent email to Wise Billionaire @ BakerTilly
@@ -473,7 +477,7 @@
                 </div><!-- End activity item-->
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">29/09/2023</div>
                   <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
                   <div class="activity-content">
                     sent email to Martin Mudhuva @ BakerTilly
@@ -481,15 +485,15 @@
                 </div><!-- End activity item-->
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">27/09/2022</div>
                   <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
                   <div class="activity-content">
-                    sent email to Strive MAsiyiwa @ Econet
+                    sent email to Strive Masiyiwa @ Econet
                   </div>
                 </div><!-- End activity item-->
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">28/08/2023</div>
                   <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
                   <div class="activity-content">
                     sent email to Simbai Nyama @ Delloite
@@ -497,7 +501,7 @@
                 </div><!-- End activity item-->
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">30/08/2023</div>
                   <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
                   <div class="activity-content">
                     sent email to Claris @ Telone
@@ -505,7 +509,7 @@
                 </div><!-- End activity item-->
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">8/29/2023</div>
+                  <div class="activite-label">29/08/2023</div>
                   <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
                   <div class="activity-content">
                     sent email to Martin Mudhuva @ BakerTilly
@@ -565,6 +569,93 @@
         let identification=`${referee.innerText}(${referee_company.innerText})`
         document.querySelector('.modal').querySelector('.modal-title').innerHTML=identification
 
+      })
+    })
+
+  let getDate=()=>{
+      // Get the current date
+      var currentDate = new Date();
+
+      // Get the day of the month (1-31)
+      var day = currentDate.getDate();
+
+      // Get the month (0-11, where 0 represents January)
+      var month = currentDate.getMonth();
+
+      // Get the year (four digits)
+      var year = currentDate.getFullYear();
+
+      // Adjust month and day values for human-readable format
+      month++; // Increment month by 1 to match conventional numbering (1-12)
+      if (day < 10) {
+        day = '0' + day; // Prepend a '0' if day is a single digit
+      
+      }
+      if (month < 10) {
+        month = '0' + month; // Prepend a '0' if day is a single digit
+      
+      }
+      return [day+'',month+'',year+'']
+
+    }
+
+    let hideItems=(match,key)=>{
+      Array.from(document.querySelector('.activity').getElementsByClassName('activity-item')).forEach((item)=>{
+            let [itemDate,itemMonth,itemYear]=item.querySelector('.activite-label').innerText.split('/')
+            //console.log([itemDate,itemMonth,itemYear],match)
+            if(itemDate.length==1){
+              itemDate=0+itemDate
+            }
+            if(itemMonth.length==1){
+              itemMonth=0+itemMonth
+            }
+            switch(key){
+              case 'day':
+                if(JSON.stringify([itemDate,itemMonth,itemYear]) !== JSON.stringify(match)){
+                  item.classList.add('hidden')
+                  console.log('match:',match)
+                  console.log('items:',[itemDate,itemMonth,itemYear])
+                }else{
+                  item.classList.remove('hidden')
+                }
+                break
+              case 'month':
+                if(!((itemMonth==match[1])&&(itemYear==match[2]))){
+                  item.classList.add('hidden')
+                }else{
+                  item.classList.remove('hidden')
+                }
+                break
+              case 'year':
+                if(itemYear!=match[2]){
+                  item.classList.add('hidden')
+                }else{
+                  item.classList.remove('hidden')
+                }
+                break
+            }
+            
+          })
+          
+    }
+
+    let [day,month,year]=getDate()
+    Array.from(document.getElementsByClassName('filter-item')).forEach((item)=>{
+      
+      item.onclick=((e)=>{
+        e.preventDefault()
+        switch(item.innerText){
+          case 'Today':
+            hideItems([day,month,year],'day')
+            break
+          case 'This Month':
+          hideItems([day,month,year],'month')
+            break
+          case 'This Year':
+            hideItems([day,month,year],'year')
+            break
+        }
+    
       })
     })
   </script>
