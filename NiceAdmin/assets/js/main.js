@@ -317,5 +317,4 @@
       }).observe(mainContainer);
     }, 200);
   }
-
 })();
