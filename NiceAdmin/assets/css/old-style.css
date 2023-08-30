@@ -1011,24 +1011,7 @@ h6 {
 .profile .profile-card h3 {
   font-size: 18px;
 }
-#position {
-  margin-top: 60px;
-  padding: 20px 10px;
-  transition: all 0.3s;
 
-}
-@media (max-width: 1000px) {
-  #position {
-    padding: 100px;
-  }
-}
-@media (min-width: 1200px) {
-
-  #position {
-    margin-left: 150px;
-    margin-right: 150px;
-  }
-}
 .profile .profile-card .social-links a {
   font-size: 20px;
   display: inline-block;
