@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>Candidate Report</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -36,17 +36,26 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .hidden{
+      display: none;
+    }
+  </style>
 </head>
 
-<body>
+<body style="padding-top: 50px;">
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Reference Checking</span>
+      </a>
+    
+    </div><!-- End Logo -->
+  </header>
   <!-- ======= Header ======= -->
   <main id="main" class="main" style="margin: 0;">
-
-    <div class="pagetitle">
-      <h1>Candidate Report</h1>
-      <button class="btn btn-primary btn-lg" id="print-button">print</button>
-    </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
@@ -56,11 +65,13 @@
           <div class="card">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
+              <ul class="nav nav-tabs nav-tabs-bordered" style="gap: 10px;">
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analytics">Analytics</button>
                 </li>
-
+                <li class="nav-item">
+                  <button class="btn btn-primary btn-lg" id="print-button">print</button>
+                </li>
               </ul>
               <div class="tab-content pt-2">
 
@@ -263,9 +274,10 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    document.getElementById("print-button").addEventListener('click',()=>{
+    document.getElementById("print-button").onclick=(e)=>{
+      e.target.classList.add('hidden')
       print()
-    })
+    }
   </script>
 </body>
 
