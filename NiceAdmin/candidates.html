@@ -427,74 +427,12 @@
                 
                 
               </div>
+
+              
             </div>
 
             
           </div>
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Conclusion</h5>
-
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle me-1"></i>
-                candidate is suitable for hiring
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            </div>
-            <!--OTHER ALERTS-->
-            <!--<div class="card">
-              <div class="card-body">
-                <h5 class="card-title">With Icon</h5>
-  
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                  <i class="bi bi-star me-1"></i>
-                  A simple primary alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                  <i class="bi bi-collection me-1"></i>
-                  A simple secondary alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <i class="bi bi-check-circle me-1"></i>
-                  A simple success alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <i class="bi bi-exclamation-octagon me-1"></i>
-                  A simple danger alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <i class="bi bi-exclamation-triangle me-1"></i>
-                  A simple warning alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                  <i class="bi bi-info-circle me-1"></i>
-                  A simple info alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                  <i class="bi bi-folder me-1"></i>
-                  A simple dark alert with icon—check it out!
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-  
-              </div>
-            </div>-->
-            
-          </div>
-          
-
         </div>
 
         <div class="col-xl-8">
@@ -592,72 +530,80 @@
                   </div>
 
                   <div class="card">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Scores from references</h5>
-          
-                        <!-- Radar Chart -->
-                        <canvas id="radarChart" style="max-height: 400px;"></canvas>
-                        <script>
-                          document.addEventListener("DOMContentLoaded", () => {
-                            new Chart(document.querySelector('#radarChart'), {
-                              type: 'radar',
-                              data: {
-                                labels: [
-                                  'Problem Solving',
-                                  'Communication Skills',
-                                  'Time Management',
-                                  'Creativity',
-                                  'Willingness to learn',
-                                  'TeamWork',
-                                  'Reliable'
-                                ],
-                                datasets: [{
-                                  label: 'BakerTilly',
-                                  data: [65, 59, 90, 81, 56, 55, 40],
-                                  fill: true,
-                                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                  borderColor: 'rgb(255, 99, 132)',
-                                  pointBackgroundColor: 'rgb(255, 99, 132)',
-                                  pointBorderColor: '#fff',
-                                  pointHoverBackgroundColor: '#fff',
-                                  pointHoverBorderColor: 'rgb(255, 99, 132)'
-                                }, {
-                                  label: 'Econet',
-                                  data: [28, 48, 40, 19, 96, 27, 100],
-                                  fill: true,
-                                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                  borderColor: 'rgb(54, 162, 235)',
-                                  pointBackgroundColor: 'rgb(54, 162, 235)',
-                                  pointBorderColor: '#fff',
-                                  pointHoverBackgroundColor: '#fff',
-                                  pointHoverBorderColor: 'rgb(54, 162, 235)'
-                                }]
-                              },
-                              options: {
-                                elements: {
-                                  line: {
-                                    borderWidth: 3
-                                  }
+                    <div class="card-body">
+                      <h5 class="card-title">Scores from references</h5>
+        
+                      <!-- Radar Chart -->
+                      <canvas id="radarChart" style="max-height: 400px;"></canvas>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          new Chart(document.querySelector('#radarChart'), {
+                            type: 'radar',
+                            data: {
+                              labels: [
+                                'Problem Solving',
+                                'Communication Skills',
+                                'Time Management',
+                                'Creativity',
+                                'Willingness to learn',
+                                'TeamWork',
+                                'Reliable'
+                              ],
+                              datasets: [{
+                                label: 'BakerTilly',
+                                data: [65, 59, 90, 81, 56, 55, 40],
+                                fill: true,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                              }, {
+                                label: 'Econet',
+                                data: [28, 48, 40, 19, 96, 27, 100],
+                                fill: true,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                pointBackgroundColor: 'rgb(54, 162, 235)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(54, 162, 235)'
+                              }]
+                            },
+                            options: {
+                              elements: {
+                                line: {
+                                  borderWidth: 3
                                 }
                               }
-                            });
+                            }
                           });
-                        </script>
-                        <!-- End Radar CHart -->
-          
-                      </div>
+                        });
+                      </script>
+                      <!-- End Radar CHart -->
+        
                     </div>
                   </div>
-                </div>
 
-                
+                  
+                </div>
 
               </div><!-- End Bordered Tabs -->
 
             </div>
           </div>
+          <div class="card">
+            <div class="card-body pt-3">
+              <h5 class="card-title">Conclusion</h5>
 
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i>
+                    candidate is suitable for hiring
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
