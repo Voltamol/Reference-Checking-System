@@ -36,6 +36,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .value{
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -73,64 +78,77 @@
       </nav>
     </div><!-- End Page Title -->
    
-    <form class="accordion w-80" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            1. Describe the candidate's work ethics in terms of their social stamina, commitment to deadlines and time consciousness.
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
-          </div>
+    <form class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <label for="customRange2" class="form-label">problem_solving(<span class="percentage">50</span>%)</label>
+          <input type="range" class="form-range" min="0" max="100" id="customRange2">
+          <input type="text" name="problem_solving" class='value'>
+          <br>
+          <label for="customRange2" class="form-label">communication_skills(<span class="percentage">50</span>%)</label>
+          <input type="range" class="form-range" min="0" max="100" id="customRange2">
+          <input type="text" name="communication_skills" class='value'>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            2. Give your assertion on the candidate's reaction towards a tight schedule or a call to achieve a difficult goal.
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+      <div class="accordion w-80" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              1. Describe the candidate's work ethics in terms of their social stamina, commitment to deadlines and time consciousness.
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            3. How well is the candidate poised infront of an audience and how good is their self-expression?
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              2. Give your assertion on the candidate's reaction towards a tight schedule or a call to achieve a difficult goal.
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            4. How well could the candidate perform given a role in the IT departement?
-          </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              3. How well is the candidate poised infront of an audience and how good is their self-expression?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFive">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-            5. Give an outline of the candidate's character and your relationship with them 
-          </button>
-        </h2>
-        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              4. How well could the candidate perform given a role in the IT departement?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              5. Give an outline of the candidate's character and your relationship with them 
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+            </div>
           </div>
         </div>
       </div>
@@ -156,6 +174,19 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    Array.from(document.getElementsByClassName("form-range")).forEach((range)=>{
+      range.addEventListener('change',()=>{
+        let parent=range.parentElement
+        let value=range.value
+        parent.querySelector(".percentage").innerHTML=value
+        let label=parent.querySelector('label').innerText
+        parent.querySelector('.value').value=value
+      })
+
+    })
+  </script>
 
 </body>
 
