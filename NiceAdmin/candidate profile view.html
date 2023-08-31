@@ -66,7 +66,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column referees">
 
-              <select class="form-select referee-options" aria-label="Default select example">
+              <select class="form-select referee-options" aria-label="Default select example" onchange="changeValues(this)">
                 <option selected value="1">Bakertilly</option>
                 <option value="2">Econet</option>
                 <option value="3">NetOne</option>
@@ -282,15 +282,64 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!--PHP CODE FOR CREATING REQUIRED JAVASCRIPT OBJECT-->
+  <!--<?php
+  // Retrieve data from a database or any other source
+  $data = [
+      companyName1=>[
+        'name' => 'John Doe',
+        'age' => 30,
+        'email' => 'johndoe@example.com'
+          ],
+      companyName2=>[
+          'name' => 'John Doe',
+          'age' => 30,
+          'email' => 'johndoe@example.com'
+        ]
+
+    ];
+  
+  // Convert the data to JSON
+  $jsonData = json_encode($data);
+  ?>-->
+
   <script>
     //referees
-    
-    Array.from(document.querySelector('.referee-options').getElementsByTagName('option')).forEach((option)=>{
-      console.log(option)
-      option.addEventListener('click',()=>{
-        console.log('clicked')
-      })
-    })
+    //data = <?php echo $jsonData; ?>;
+    data={
+      Bakertilly:{
+        company:'bakertilly',
+        referee:'martin muduva',
+        email:'mmuduva@bakertilly.co.zw',
+        telephone:'+263718092534'
+      },
+      Econet:{
+        company:'econet',
+        referee:'strive masiyiwa',
+        email:'strivemasiyiwa@bakertilly.co.zw',
+        telephone:'+263718092534'
+      },
+      NetOne:{
+        company:'netone',
+        referee:'brighton M',
+        email:'brightonM@bakertilly.co.zw',
+        telephone:'+263718092534'
+      }
+    }
+
+    function changeValues(selectElement) {
+      var selectedOption = selectElement.options[selectElement.selectedIndex];
+      var selectedText = selectedOption.text;
+      
+      // Use the selectedText as needed
+      //document.getElementById("company").value=selectedText
+      correspondingObject=data[selectedText]
+      for(let key in correspondingObject){
+        document.getElementById(key).value=correspondingObject[key]
+
+      }
+      
+    }
   </script>
 
 </body>
