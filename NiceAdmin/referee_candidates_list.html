@@ -29,6 +29,12 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <style>
+    .hidden{
+      display: none;
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
@@ -36,6 +42,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
 </head>
 
 <body>
@@ -76,28 +83,34 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>
+                    <th class="hidden">img_src</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Brandon Jacob</td>
                     <td>Designer</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <td>Bridie Kessler</td>
                     <td>Developer</td>
+                    <td class="hidden">assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <td>Ashleigh Langosh</td>
                     <td>Finance</td>
+                    <td>assets/img/logo.png</td>
                   </tr>
                   <tr>
                     <td>Angus Grady</td>
                     <td>HR</td>
+                    <td>assets/img/giftbox.jpg</td>
                   </tr>
                   <tr>
                     <td>Raheem Lehner</td>
                     <td>Dynamic Division Officer</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                 </tbody>
               </table>
@@ -151,12 +164,12 @@
                   <h5 class="card-title">Profile Details</h5>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8 fullName">Kevin Anderson</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Job</div>
-                    <div class="col-lg-9 col-md-8">Web Designer</div>
+                    <div class="col-lg-9 col-md-8 role">Web Designer</div>
                   </div>
                 </div>
                 <div class="col-12">
@@ -199,14 +212,23 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
-      row.addEventListener('click',()=>{
-        let td=row.querySelector('td')
-        let name=td.innerText
-        //alert(name)
+    let displayAttributes=(row)=>{
+        let [fullName,role,img]=Array.from(row.getElementsByTagName('td'))
         let [card1,card2]=document.getElementById('candidates-profile').getElementsByClassName('card')
-        card1.querySelector('h2').innerText=name
+        card1.querySelector('h2').innerText=fullName.innerText
+        card1.querySelector('img').src=img.innerText
+        card2.querySelector('.fullName').innerText=fullName.innerText
+        card2.querySelector('.role').innerText=role.innerText
         document.getElementById('profile-link').click()
+    }
+    //setting first row as default display
+    displayAttributes(document.querySelector('tbody').querySelector('tr'))
+
+    Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
+      row.style.cursor='pointer'
+      row.lastChild.classList.add('hidden')
+      row.addEventListener('click',()=>{
+        displayAttributes(row)
       })
     })
   </script>
