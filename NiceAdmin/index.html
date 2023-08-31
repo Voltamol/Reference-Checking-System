@@ -363,8 +363,8 @@
                       
                       <th scope="col">Company Name</th>
                       <th scope="col">Referee Name</th>
-                      
                       <th scope="col">Status</th>
+                      <th class="hidden">phone number</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -372,36 +372,36 @@
                       
                       <td>BakerTilly</td>
                       <td><a href="#" class="text-primary">Martin Muduva</a></td>
-                      
                       <td><span class="badge bg-success">Completed</span></td>
+                      <td>(+263)732 488 904</td>
                     </tr>
                     <tr>
                       
                       <td>BakerTilly</td>
                       <td><a href="#" class="text-primary">Wise Billionaire</a></td>
-                      
                       <td><span class="badge bg-warning">Pending</span></td>
+                      <td>(+263)751 261 018</td>
                     </tr>
                     <tr>
                       
                       <td>Econet</td>
                       <td><a href="#" class="text-primary">Strive masiyiwa</a></td>
-                      
                       <td><span class="badge bg-success">Completed</span></td>
+                      <td>(+263)722 301 915</td>
                     </tr>
                     <tr>
                       
                       <td>Ey</td>
                       <td><a href="#" class="text-primar">CZ</a></td>
-                      
                       <td><span class="badge bg-primary">In progress</span></td>
+                      <td>(+263)775 337 634</td>
                     </tr>
                     <tr>
                       
                       <td>KPMG</td>
                       <td><a href="#" class="text-primary">Simbai Nyama</a></td>
-                      
                       <td><span class="badge bg-success">Completed</span></td>
+                      <td>(+263)788 645 122</td>
                     </tr>
                   </tbody>
                 </table>
@@ -421,9 +421,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <p>Phone Number 1:+263 772 719 458</p>
-                            <p>Phone Number 2:+263 772 719 458</p>
-                            <p>Phone Number 3:+263 772 719 458</p>
+                            <p class="phone-number"></p>
                           </div>
                           
                         </div>
@@ -556,12 +554,15 @@
   <script>
     Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
       row.setAttribute('style','cursor:pointer')
+      row.lastChild.classList.add('hidden')
       row.addEventListener('click',()=>{
         document.querySelector('.modal-toggle-button').click()
         let referee_company=row.querySelector('td')
         let referee=referee_company.nextSibling
         let identification=`${referee.innerText}(${referee_company.innerText})`
-        document.querySelector('.modal').querySelector('.modal-title').innerHTML=identification
+        let modal=document.querySelector('.modal')
+        modal.querySelector('.modal-title').innerHTML=identification
+        modal.querySelector('.phone-number').innerText=row.lastChild.innerText
 
       })
     })
@@ -652,6 +653,8 @@
     
       })
     })
+
+
   </script>
   
 </body>
