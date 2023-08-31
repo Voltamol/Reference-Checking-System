@@ -67,7 +67,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column referees">
 
               <select class="form-select referee-options" aria-label="Default select example" onchange="changeValues(this)">
-                <option selected value="1">Bakertilly</option>
+                <option selected value="0">SELECT REFEREE</option>
+                <option value="1">Bakertilly</option>
                 <option value="2">Econet</option>
                 <option value="3">NetOne</option>
               </select>
@@ -76,19 +77,19 @@
               
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Company Name</label>
-                <input type="email" class="form-control" id="company" placeholder="name@example.com" value="Bakertilly">
+                <input type="email" class="form-control" id="company" placeholder="name@example.com">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Referee Name</label>
-                <input type="email" class="form-control" id="referee" placeholder="name@example.com" value="martin">
+                <input type="email" class="form-control" id="referee" placeholder="name@example.com">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Company Email</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" value="bakertilly@arrundale.com">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Company Telephone</label>
-                <input type="email" class="form-control" id="telephone" placeholder="name@example.com" value="+263 774 718 942">
+                <input type="email" class="form-control" id="telephone" placeholder="name@example.com">
               </div>
               
               <div class="mb-3">
@@ -164,8 +165,8 @@
                       <div class="col-md-8 col-lg-9">
                         <img src="assets/img/profile-img.jpg" alt="Profile">
                         <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="#" id="upload-img"  class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <input type="file" name="profile_img" style="display: none;" id="profile-img">
                         </div>
                       </div>
                     </div>
@@ -339,6 +340,14 @@
 
       }
       
+    }
+
+
+
+    document.getElementById("upload-img").onclick=(e)=>{
+      e.preventDefault()
+      let icon=e.target
+      document.getElementById("profile-img").click()
     }
   </script>
 
