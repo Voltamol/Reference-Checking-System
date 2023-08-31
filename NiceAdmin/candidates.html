@@ -36,6 +36,19 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .hidden{
+      display: none;
+    }
+    #print-button{
+      position: fixed;
+      bottom: 80px;
+      right:50px;
+      z-index: 1000;
+      padding: 15px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -297,19 +310,15 @@
         </a>
       </li><!-- End Error 404 Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="Referee Reports.html">
-          <i class="bi bi-file-earmark-pdf"></i>
-          <span>Referee Reports</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
+      
 
     </ul>
 
   </aside><!-- End Sidebar--><!-- End Sidebar-->
 
   <main id="main" class="main">
-
+    <i class="bi bi-file-earmark-pdf bg-primary rounded" id="print-button" data-bs-toggle="tooltip" data-bs-placement="top" title="produce report" onclick="redirect()"></i>
+    <a href="Candidate Reports.html" id="link-to-report" style="display: none;"></a>
     <section class="section" id="candidates-table">
       <div class="row">
         <div class="col-lg-12">
@@ -648,6 +657,10 @@
         document.getElementById('profile-link').click()
       })
     })
+
+    function redirect(){
+      document.getElementById("link-to-report").click()
+    }
   </script>
 </body>
 
