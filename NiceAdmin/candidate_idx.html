@@ -36,6 +36,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .hidden{
+      display: none;
+    }
+  </style>
 </head>
 
 <body style="padding-top:50px;">
@@ -243,8 +248,7 @@
                 <div class="col-12">
                   <a href="referee_details.html" class="btn btn-primary add-ref">Add referee</a>
                 </div>
-
-                  
+              </form>
             </div>
           </div>
         </div><!-- End Left side columns -->
@@ -259,6 +263,34 @@
               </div>
 
               <form class="row g-3 needs-validation" novalidate>
+
+                <div class="hidden hidden-controls">
+                  <div class="col-12">
+                    <label for="company-name" class="form-label">company name</label>
+                    <input type="text" name="company-name" class="form-control" id="company-name">
+                  
+                  </div>
+              
+                  <div class="col-12">
+                    <label for="referee-name" class="form-label">referee name</label>
+                    <input type="text" name="referee-name" class="form-control" id="referee-name">
+                    
+                  </div>
+              
+                  <div class="col-12">
+                    <label for="company-email" class="form-label">company email</label>
+                    <input type="text" name="company-email" class="form-control" id="company-email">
+                    
+                  </div>
+              
+                  <div class="col-12">
+                    <label for="company-telephone" class="form-label">company telephone</label>
+                    <input type="text" name="company-telephone" class="form-control" id="company-telephone">
+                    
+                  </div>
+                  
+                </div>
+            
 
                 <div class="col-12">
                   <label for="yourUsername" class="form-label">CV</label>
@@ -376,7 +408,12 @@ let btnParent;
     inputFields.remove()
     document.querySelector('.submit-col').classList.remove('hidden')
     btnParent.classList.remove('hidden')
-    
+    let [form1,submitForm]=Array.from(document.getElementsByTagName('form'))
+    let controls=submitForm.querySelector('.hidden-controls')
+    controls.querySelector('#company-name').value+=` ${companyName}`
+    controls.querySelector('#referee-name').value+=` ${refereeName}`
+    controls.querySelector('#company-email').value+=` ${companyEmail}`
+    controls.querySelector('#company-telephone').value+=` ${companyTelephone}`
   })
    
 </script>

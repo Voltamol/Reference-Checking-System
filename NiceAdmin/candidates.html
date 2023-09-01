@@ -303,14 +303,12 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link collapsed" href="Candidate Reports.html">
           <i class="bi bi-file-earmark-pdf"></i>
           <span>Candidate Reports</span>
         </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      
+      </li>--><!-- End Error 404 Page Nav -->
 
     </ul>
 
@@ -335,7 +333,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Proffession</th>
                     <th scope="col">Phone Number</th>
-                    
+                    <th class="hidden">Email</th>
+                    <th class="hidden">img_src</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -344,28 +343,32 @@
                     <td>Brandon Jacob</td>
                     <td>Designer</td>
                     <td>+263 713 859 053</td>
-                    
+                    <td>martinmuduva@baker.co.zw</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Bridie Kessler</td>
                     <td>Developer</td>
                     <td>+263 713 859 053</td>
-                    
+                    <td>martinmuduva@baker.co.zw</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Ashleigh Langosh</td>
                     <td>Finance</td>
                     <td>+263 713 859 053</td>
-                    
+                    <td>martinmuduva@baker.co.zw</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td>Angus Grady</td>
                     <td>HR</td>
                     <td>+263 713 859 053</td>
-                    
+                    <td>martinmuduva@baker.co.zw</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   
                   <tr>
@@ -373,7 +376,8 @@
                     <td>Raheem Lehner</td>
                     <td>Dynamic Division Officer</td>
                     <td>+263 713 859 053</td>
-                    
+                    <td>martinmuduva@baker.co.zw</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
 
                   
@@ -408,13 +412,13 @@
               <h5 class="card-title">sentiment analysis</h5>
 
               <!-- Progress Bars with Backgrounds-->
-              <div class="progress">
+              <div class="progress neutral">
                 <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">15%</div>
               </div>
-              <div class="progress mt-3">
+              <div class="progress mt-3 positive">
                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">35%</div>
               </div>
-              <div class="progress mt-3">
+              <div class="progress mt-3 negative">
                 <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
               </div><!-- End Progress Bars with Backgrounds -->
               <br>
@@ -468,23 +472,23 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">First Name</div>
-                    <div class="col-lg-9 col-md-8">Dyllan</div>
+                    <div class="col-lg-3 col-md-4 label">First Name</div>
+                    <div class="col-lg-9 col-md-8 FirstName">Dyllan</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Last Name</div>
-                    <div class="col-lg-9 col-md-8">Baloyi</div>
+                    <div class="col-lg-3 col-md-4 label">Last Name</div>
+                    <div class="col-lg-9 col-md-8 LastName">Baloyi</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Phone</div>
-                    <div class="col-lg-9 col-md-8">+263 713 859 053</div>
+                    <div class="col-lg-9 col-md-8 Phone">+263 713 859 053</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">dyllan.baloyi@bakertilly.co.zw</div>
+                    <div class="col-lg-9 col-md-8 Email">dyllan.baloyi@bakertilly.co.zw</div>
                   </div>
 
                 </div>
@@ -497,52 +501,67 @@
                       <!-- Doughnut Chart -->
                       <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
                       <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          new Chart(document.querySelector('#doughnutChart'), {
-                            type: 'doughnut',
-                            data: {
-                              labels: [
-                                  'Problem Solving',
-                                  'Communication Skills',
-                                  'Time Management',
-                                  'Creativity',
-                                  'Willingness to learn',
-                                  'TeamWork',
-                                  'Reliable'
+                        
+                         
+                        let doughnut;
+                        let createChart=(fullname)=>{
+                        let scores=relatedData[fullname].analytics.average_scores
+                        if(!doughnut){
+
+                        
+                        doughnut=new Chart(document.querySelector('#doughnutChart'), {
+                          type: 'doughnut',
+                          data: {
+                            labels: [
+                                'Problem Solving',
+                                'Communication Skills',
+                                'Time Management',
+                                'Creativity',
+                                'Willingness to learn',
+                                'TeamWork',
+                                'Reliable'
+                              ],
+                              datasets: [{
+                                label: 'Average Score',
+                                data: scores,
+                                fill: true,
+                                backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 86, 205)',
+                                  'rgb(86,255,  205)',
+                                  'rgb(100, 162, 235)',
+                                  'rgb(180,255,180)',
                                 ],
-                                datasets: [{
-                                  label: 'Average Score',
-                                  data: [65, 59, 90, 81, 56, 55, 40],
-                                  fill: true,
-                                  backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(255, 205, 86)',
-                                    'rgb(255, 86, 205)',
-                                    'rgb(86,255,  205)',
-                                    'rgb(100, 162, 235)',
-                                    'rgb(180,255,180)',
-                                  ],
-                                  
-                                  pointBackgroundColor: 'rgb(255, 99, 132)',
-                                  pointBorderColor: '#fff',
-                                  pointHoverBackgroundColor: '#fff',
-                                  pointHoverBorderColor: 'rgb(255, 99, 132)'
-                                },]
-                              }
-                          });
+                                
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                              },]
+                            }
                         });
+                                          
+                      }else{
+                        doughnut.data.datasets[0].data=scores
+                        doughnut.update()
+                      }
+                      }
+                        // document.addEventListener("DOMContentLoaded", () => {
+                        //   let data=[65, 59, 90, 81, 56, 55, 40]
+                        //   createChart(data)
+                        // })
                       </script>
                       <!-- End Doughnut CHart -->
         
                     </div>
                   </div>
 
-                  <div class="card">
+                  <!--<div class="card">
                     <div class="card-body">
                       <h5 class="card-title">Scores from references</h5>
         
-                      <!-- Radar Chart -->
                       <canvas id="radarChart" style="max-height: 400px;"></canvas>
                       <script>
                         document.addEventListener("DOMContentLoaded", () => {
@@ -590,12 +609,77 @@
                           });
                         });
                       </script>
-                      <!-- End Radar CHart -->
+                      
+        
+                    </div>
+                  </div>-->
+
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Stacked Bar Chart</h5>
+        
+                      <!-- Stacked Bar Chart -->
+                      <canvas id="stakedBarChart" style="max-height: 400px;"></canvas>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          new Chart(document.querySelector('#stakedBarChart'), {
+                            type: 'bar',
+                            data: {
+                              labels: [
+                                'Problem Solving',
+                                'Communication Skills',
+                                'Time Management',
+                                'Creativity',
+                                'Willingness to learn',
+                                'TeamWork',
+                                'Reliable'
+                              ],
+                              datasets: [{
+                                label: 'BakerTilly',
+                                data: [65, 59, 90, 81, 56, 55, 40],
+                                fill: true,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                              }, {
+                                label: 'Econet',
+                                data: [28, 48, 40, 19, 96, 27, 100],
+                                fill: true,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                pointBackgroundColor: 'rgb(54, 162, 235)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(54, 162, 235)'
+                              }]
+                            },
+                            options: {
+                              plugins: {
+                                title: {
+                                  display: true,
+                                  text: 'Chart.js Bar Chart - Stacked'
+                                },
+                              },
+                              responsive: true,
+                              scales: {
+                                x: {
+                                  stacked: true,
+                                },
+                                y: {
+                                  stacked: true
+                                }
+                              }
+                            }
+                          });
+                        });
+                      </script>
+                      <!-- End Stacked Bar Chart -->
         
                     </div>
                   </div>
-
-                  
                 </div>
 
               </div><!-- End Bordered Tabs -->
@@ -606,11 +690,11 @@
             <div class="card-body pt-3">
               <h5 class="card-title">Conclusion</h5>
 
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="bi bi-check-circle me-1"></i>
-                    candidate is suitable for hiring
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
+              <div class="alert alert-dismissible fade show" role="alert">
+                <i class="bi me-1"></i>
+                <p>candidate is suitable for hiring</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             </div>
           </div>
         </div>
@@ -645,7 +729,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
+  <!--<script>
     Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
       row.setAttribute('style','cursor:pointer')
       row.addEventListener('click',()=>{
@@ -661,7 +745,135 @@
     function redirect(){
       document.getElementById("link-to-report").click()
     }
+  </script>-->
+
+  <script>
+    
+  let conclusions={
+    suitable:{
+      message:'candidate is suitable for hiring',
+      alertClass:['alert-danger','alert-success'],
+      icon:'bi-check-circle'
+    },
+    not_suitable:{
+      message:'candidate is not suitable for hiring',
+      alertClass:['alert-success','alert-danger'],
+      icon:'bi-x-circle'
+    }
+  }
+  //data obtained after merging tables
+  let relatedData={
+    'Brandon Jacob':{
+      sentiments:{
+        positive:20,
+        negative:60,
+        neutral:40
+      },
+      conclusion:'not_suitable',
+      analytics:{
+        individual_scores:{
+          'bakertilly':[65, 59, 90, 81, 56, 55, 40],
+          'econet':[65, 59, 90, 81, 56, 55, 40]
+        },
+        average_scores:[30,30, 30, 30, 30, 30, 30]
+      }
+    },
+    
+    'Bridie Kessler':{
+      sentiments:{
+        positive:75,
+        negative:5,
+        neutral:20
+      },
+      conclusion:'suitable',
+      analytics:{
+        individual_scores:{
+          'bakertilly':[65, 59, 90, 81, 56, 55, 40],
+          'econet':[65, 59, 90, 81, 56, 55, 40]
+        },
+        average_scores:[100, 100,100,100,200,100, 100]
+      }
+    },
+  }
+
+
+let setSentiments=(fullname)=>{
+    
+  let sentiments=relatedData[fullname].sentiments
+  let [neutral,positive,negative]=Array.from(document.getElementsByClassName('progress'))
+  let neutralProgress=neutral.querySelector('.progress-bar')
+  neutralProgress.style.width=`${sentiments.neutral}%`
+  neutralProgress.setAttribute('aria-valuenow','10')
+  neutralProgress.innerHTML=`${sentiments.neutral}%`
+
+  let positiveProgress=positive.querySelector('.progress-bar')
+  positiveProgress.style.width=`${sentiments.positive}%`
+  positiveProgress.setAttribute('aria-valuenow','10')
+  positiveProgress.innerHTML=`${sentiments.positive}%`
+
+  let negativeProgress=negative.querySelector('.progress-bar')
+  negativeProgress.style.width=`${sentiments.negative}%`
+  negativeProgress.setAttribute('aria-valuenow','10')
+  negativeProgress.innerHTML=`${sentiments.negative}%`
+}
+
+let setConclusion=(fullname)=>{
+ 
+  let conclusion=relatedData[fullname].conclusion
+  let alert=document.querySelector('.alert')
+  let correspondingOutput=conclusions[conclusion]
+
+  let [oldClass,newClass]=correspondingOutput.alertClass
+  alert.classList.remove(oldClass)
+  alert.classList.add(newClass)
+  alert.querySelector('i').classList.add(correspondingOutput.icon)
+  alert.querySelector('p').innerText=correspondingOutput.message
+}
+
+// let resetAverageScores=(fullname)=>{
+//   let scores=relatedData[fullname].analytics.average_scores
+//   console.log()
+//   doughnut.data.datasets[0].data=scores
+//   doughnut.update()
+// }
+
+let displayAttributes=(row)=>{
+  let [num,FullName,Role,Phone,Email,img]=Array.from(row.getElementsByTagName('td'))
+  let card1=document.getElementById('candidates-profile').querySelector('.col-xl-4').querySelector('.card')
+  let card2=document.getElementById('candidates-profile').querySelector('.col-xl-8').querySelector('.card')
+  //let [card1,card2]=document.getElementById('candidates-profile').getElementsByClassName('card')
+  let [FirstName,LastName]=FullName.innerText.split(' ')
+  card1.querySelector('h2').innerText=`${FirstName} ${LastName}`
+  card1.querySelector('img').src=img.innerText
+  card2.querySelector('.FirstName').innerText=FirstName
+  card2.querySelector('.LastName').innerText=LastName
+  //card2.querySelector('.Role').innerText=Role.innerText
+  card2.querySelector('.Phone').innerText=Phone.innerText
+  card2.querySelector('.Email').innerText=Email.innerText
+  document.getElementById('profile-link').click()
+  let fullname=FullName.innerText
+  setSentiments(fullname)
+  setConclusion(fullname)
+  //resetAverageScores(fullname)
+  createChart(fullname)
+  console.log(doughnut)
+}
+  //setting first row as default display
+  displayAttributes(document.querySelector('tbody').querySelector('tr'))
+
+  
+Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
+  row.style.cursor='pointer'
+  let lastAttr=row.lastChild
+  lastAttr.previousSibling.classList.add('hidden')
+  lastAttr.classList.add('hidden')
+  row.addEventListener('click',()=>{
+    displayAttributes(row)
+  })
+  
+})
   </script>
+
 </body>
 
 </html>
