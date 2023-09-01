@@ -352,7 +352,7 @@
                     <td>Developer</td>
                     <td>+263 713 859 053</td>
                     <td>martinmuduva@baker.co.zw</td>
-                    <td>assets/img/profile-img.jpg</td>
+                    <td>assets/img/profile-img2.jpg</td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
@@ -360,7 +360,7 @@
                     <td>Finance</td>
                     <td>+263 713 859 053</td>
                     <td>martinmuduva@baker.co.zw</td>
-                    <td>assets/img/profile-img.jpg</td>
+                    <td>assets/img/profile-img3.jpg</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
@@ -368,7 +368,7 @@
                     <td>HR</td>
                     <td>+263 713 859 053</td>
                     <td>martinmuduva@baker.co.zw</td>
-                    <td>assets/img/profile-img.jpg</td>
+                    <td>assets/img/profile-img4.jpg</td>
                   </tr>
                   
                   <tr>
@@ -377,7 +377,7 @@
                     <td>Dynamic Division Officer</td>
                     <td>+263 713 859 053</td>
                     <td>martinmuduva@baker.co.zw</td>
-                    <td>assets/img/profile-img.jpg</td>
+                    <td>assets/img/profile-img5.jpg</td>
                   </tr>
 
                   
@@ -507,8 +507,6 @@
                         let createChart=(fullname)=>{
                         let scores=relatedData[fullname].analytics.average_scores
                         if(!doughnut){
-
-                        
                         doughnut=new Chart(document.querySelector('#doughnutChart'), {
                           type: 'doughnut',
                           data: {
@@ -558,62 +556,7 @@
                     </div>
                   </div>
 
-                  <!--<div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Scores from references</h5>
-        
-                      <canvas id="radarChart" style="max-height: 400px;"></canvas>
-                      <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          new Chart(document.querySelector('#radarChart'), {
-                            type: 'radar',
-                            data: {
-                              labels: [
-                                'Problem Solving',
-                                'Communication Skills',
-                                'Time Management',
-                                'Creativity',
-                                'Willingness to learn',
-                                'TeamWork',
-                                'Reliable'
-                              ],
-                              datasets: [{
-                                label: 'BakerTilly',
-                                data: [65, 59, 90, 81, 56, 55, 40],
-                                fill: true,
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                borderColor: 'rgb(255, 99, 132)',
-                                pointBackgroundColor: 'rgb(255, 99, 132)',
-                                pointBorderColor: '#fff',
-                                pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgb(255, 99, 132)'
-                              }, {
-                                label: 'Econet',
-                                data: [28, 48, 40, 19, 96, 27, 100],
-                                fill: true,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgb(54, 162, 235)',
-                                pointBackgroundColor: 'rgb(54, 162, 235)',
-                                pointBorderColor: '#fff',
-                                pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgb(54, 162, 235)'
-                              }]
-                            },
-                            options: {
-                              elements: {
-                                line: {
-                                  borderWidth: 3
-                                }
-                              }
-                            }
-                          });
-                        });
-                      </script>
-                      
-        
-                    </div>
-                  </div>-->
-
+                 
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">Stacked Bar Chart</h5>
@@ -621,8 +564,12 @@
                       <!-- Stacked Bar Chart -->
                       <canvas id="stakedBarChart" style="max-height: 400px;"></canvas>
                       <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          new Chart(document.querySelector('#stakedBarChart'), {
+                        let bars;
+                        let createBars=(fullname)=>{
+                          let scores=relatedData[fullname].analytics.individual_scores
+                          document.addEventListener("DOMContentLoaded", () => {
+                          if(!bars){
+                            bars=new Chart(document.querySelector('#stakedBarChart'), {
                             type: 'bar',
                             data: {
                               labels: [
@@ -635,7 +582,7 @@
                                 'Reliable'
                               ],
                               datasets: [{
-                                label: 'BakerTilly',
+                                label: 'bakertilly',
                                 data: [65, 59, 90, 81, 56, 55, 40],
                                 fill: true,
                                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -645,7 +592,7 @@
                                 pointHoverBackgroundColor: '#fff',
                                 pointHoverBorderColor: 'rgb(255, 99, 132)'
                               }, {
-                                label: 'Econet',
+                                label: 'econet',
                                 data: [28, 48, 40, 19, 96, 27, 100],
                                 fill: true,
                                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -674,7 +621,24 @@
                               }
                             }
                           });
+                        
+                          }else{
+                            // bars.data.datasets.forEach((dataset)=>{
+                            //   dataset.data=score
+                            // })
+                            for(i=0;i<scores.length;i++){
+                              let dataset=bars.data.datasets[i]
+                              dataset.data=scores[dataset.label]
+                              console.log(dataset)
+                              console.log(scores[dataset.label])
+                            }
+                            bars.update()
+                          }
+                        
                         });
+                      
+                        }
+                        
                       </script>
                       <!-- End Stacked Bar Chart -->
         
@@ -789,7 +753,7 @@
       analytics:{
         individual_scores:{
           'bakertilly':[65, 59, 90, 81, 56, 55, 40],
-          'econet':[65, 59, 90, 81, 56, 55, 40]
+          'econet':[100, 100,100,100,200,100, 100]
         },
         average_scores:[100, 100,100,100,200,100, 100]
       }
@@ -856,10 +820,10 @@ let displayAttributes=(row)=>{
   setConclusion(fullname)
   //resetAverageScores(fullname)
   createChart(fullname)
-  console.log(doughnut)
+  createBars(fullname)
 }
   //setting first row as default display
-  displayAttributes(document.querySelector('tbody').querySelector('tr'))
+displayAttributes(document.querySelector('tbody').querySelector('tr'))
 
   
 Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
