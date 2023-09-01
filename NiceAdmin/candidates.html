@@ -565,9 +565,16 @@
                       <canvas id="stakedBarChart" style="max-height: 400px;"></canvas>
                       <script>
                         let bars;
+                        let updateBars=(scores)=>{
+                          let datasets=bars.data.datasets
+                          datasets.forEach((dataset)=>{
+                            dataset.data=scores[dataset.label]
+                          })
+                          bars.update()
+                        }
+
                         let createBars=(fullname)=>{
                           let scores=relatedData[fullname].analytics.individual_scores
-                          document.addEventListener("DOMContentLoaded", () => {
                           if(!bars){
                             bars=new Chart(document.querySelector('#stakedBarChart'), {
                             type: 'bar',
@@ -583,7 +590,7 @@
                               ],
                               datasets: [{
                                 label: 'bakertilly',
-                                data: [65, 59, 90, 81, 56, 55, 40],
+                                data: [],
                                 fill: true,
                                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                 borderColor: 'rgb(255, 99, 132)',
@@ -593,7 +600,7 @@
                                 pointHoverBorderColor: 'rgb(255, 99, 132)'
                               }, {
                                 label: 'econet',
-                                data: [28, 48, 40, 19, 96, 27, 100],
+                                data: [],
                                 fill: true,
                                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                                 borderColor: 'rgb(54, 162, 235)',
@@ -622,22 +629,12 @@
                             }
                           });
                         
+                          updateBars(scores)
                           }else{
-                            // bars.data.datasets.forEach((dataset)=>{
-                            //   dataset.data=score
-                            // })
-                            for(i=0;i<scores.length;i++){
-                              let dataset=bars.data.datasets[i]
-                              dataset.data=scores[dataset.label]
-                              console.log(dataset)
-                              console.log(scores[dataset.label])
-                            }
-                            bars.update()
-                          }
-                        
-                        });
-                      
+                            updateBars(scores)
+                          
                         }
+                      }
                         
                       </script>
                       <!-- End Stacked Bar Chart -->
@@ -760,7 +757,6 @@
     },
   }
 
-
 let setSentiments=(fullname)=>{
     
   let sentiments=relatedData[fullname].sentiments
@@ -793,13 +789,6 @@ let setConclusion=(fullname)=>{
   alert.querySelector('i').classList.add(correspondingOutput.icon)
   alert.querySelector('p').innerText=correspondingOutput.message
 }
-
-// let resetAverageScores=(fullname)=>{
-//   let scores=relatedData[fullname].analytics.average_scores
-//   console.log()
-//   doughnut.data.datasets[0].data=scores
-//   doughnut.update()
-// }
 
 let displayAttributes=(row)=>{
   let [num,FullName,Role,Phone,Email,img]=Array.from(row.getElementsByTagName('td'))
@@ -836,7 +825,12 @@ Array.from(document.getElementsByTagName('tr')).forEach((row)=>{
   })
   
 })
-  </script>
+</script>
+<script>
+  let redirect=()=>{
+    document.getElementById('link-to-report').click()
+  }
+</script>
 
 </body>
 
