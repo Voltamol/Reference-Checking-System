@@ -1,7 +1,7 @@
 <?php
 session.start();
 if ($_SESSION['username'] =="" && $_SESSION['isadmin']==""){
-  Header("Location:index.php");
+  Header("Location:../index.php");
   
 }
 if($_POST[submit]){
@@ -27,29 +27,29 @@ if($_POST[submit]){
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>candidate index</title>
+  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -62,9 +62,6 @@ if($_POST[submit]){
     .hidden{
       display: none;
     }
-    #refere-pos{
-      margin-left: 0px;
-    }
   </style>
 </head>
 
@@ -74,7 +71,7 @@ if($_POST[submit]){
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="../assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Reference Checking</span>
       </a>
       <!--<i class="bi bi-list toggle-sidebar-btn"></i>-->
@@ -94,8 +91,6 @@ if($_POST[submit]){
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bi bi-search"></i>
           </a>
-        </li><!-- End Search Icon-->
-
         </li><
 
         <li class="nav-item dropdown">
@@ -110,11 +105,18 @@ if($_POST[submit]){
   <!-- ======= Header ======= -->
   <main id="main" class="main" style="margin: 0;">
 
+    <div class="pagetitle">
+      <!--<h1>Enter References</h1>-->
+
+    </div><!-- End Page Title -->
+
     <section class="section dashboard">
       <div class="row">
 
         <!-- Left side columns -->
         <div class="col-lg-8">
+          
+
           <div class="card mb-3">
             <div class="card-body">
               <div class="pt-4 pb-2">
@@ -125,10 +127,6 @@ if($_POST[submit]){
               <form class="row g-3 needs-validation reference-data" novalidate>
 
                 <hr id="seperator">
-
-                  <!--<div>
-                    <button class="btn btn-primary"> Add Referee</button>
-                  </div>--> 
                 
                 <div class="col-12">
                   <a href="referee_details.html" class="btn btn-primary add-ref">Add referee</a>
@@ -151,16 +149,11 @@ if($_POST[submit]){
 
                 <div class="hidden hidden-controls">
                   <div class="col-12">
-                    <label for="company-name" class="form-label"> name</label>
-                    <input type="text" name="company" class="form-control" id="company-name">
-                  
-                  </div>
-              
-                  <div class="col-12">
                     <label for="company-name" class="form-label">company name</label>
                     <input type="text" name="company" class="form-control" id="company-name">
                   
                   </div>
+              
                   <div class="col-12">
                     <label for="referee-name" class="form-label">referee name</label>
                     <input type="text" name="referee" class="form-control" id="referee-name">
@@ -229,41 +222,35 @@ if($_POST[submit]){
   <script src="assets/js/main.js"></script>
 
 <script>
-  let template=`     <div>
-        <div class="col-12">
+  let template=`    <div>
+      <div class="col-12">
         <label for="company-name" class="form-label">company name</label>
         <input type="text" name="company-name" class="form-control" id="company-name">
-        
-        </div>
-
-        <div class="col-12">
+      
+      </div>
+  
+      <div class="col-12">
         <label for="referee-name" class="form-label">referee name</label>
         <input type="text" name="referee-name" class="form-control" id="referee-name">
         
-        </div>
-
-        <div  class="col-12">
-        <label for="position" class="form-label">Position</label>
-        <input style="margin-left:auto;margin-top:0" type="text" name="position" class="form-control" id="position">
-        
-        </div>
-        
-        <div class="col-12">
+      </div>
+  
+      <div class="col-12">
         <label for="company-email" class="form-label">company email</label>
         <input type="text" name="company-email" class="form-control" id="company-email">
         
-        </div>
-
-        <div class="col-12">
+      </div>
+  
+      <div class="col-12">
         <label for="company-telephone" class="form-label">company telephone</label>
         <input type="text" name="company-telephone" class="form-control" id="company-telephone">
         
-        </div>
-        <br>
-        <div class="col-12">
+      </div>
+      <br>
+      <div class="col-12">
         <button class="btn btn-success w-10 add-comp" type="submit">Add</button>
-        </div>
-    </div>`
+      </div>
+  </div>`
 
   let createElement=(template)=>{
     let temp=document.createElement('div')
@@ -291,7 +278,6 @@ let btnParent;
     let form=e.target
     let companyName=form['company-name'].value
     let refereeName=form['referee-name'].value
-    let position=form['position'].value
     let companyEmail=form['company-email'].value
     let companyTelephone=form['company-telephone'].value
     let compTemplate=`<div class="col-12">
@@ -309,8 +295,6 @@ let btnParent;
     let controls=submitForm.querySelector('.hidden-controls')
     controls.querySelector('#company-name').value+=` ${companyName}`
     controls.querySelector('#referee-name').value+=` ${refereeName}`
-    
-    controls.querySelector('#position').value+=` ${position}`
     controls.querySelector('#company-email').value+=` ${companyEmail}`
     controls.querySelector('#company-telephone').value+=` ${companyTelephone}`
   })
