@@ -62,6 +62,9 @@ if($_POST[submit]){
     .hidden{
       display: none;
     }
+    #refere-pos{
+      margin-left: 0px;
+    }
   </style>
 </head>
 
@@ -227,41 +230,41 @@ if($_POST[submit]){
   <script src="assets/js/main.js"></script>
 
 <script>
-  let template=`    <div>
-      <div class="col-12">
+  let template=`     <div>
+        <div class="col-12">
         <label for="company-name" class="form-label">company name</label>
         <input type="text" name="company-name" class="form-control" id="company-name">
-      
-      </div>
-  
-      <div class="col-12">
+        
+        </div>
+
+        <div class="col-12">
         <label for="referee-name" class="form-label">referee name</label>
         <input type="text" name="referee-name" class="form-control" id="referee-name">
         
-      </div>
-  
-      <div class="col-12">
-        <label for="company-email" class="form-label">Position</label>
-        <input type="text" name="position" class="form-control" id="position">
+        </div>
+
+        <div  class="col-12">
+        <label for="position" class="form-label">Position</label>
+        <input style="margin-left:auto;margin-top:0" type="text" name="position" class="form-control" id="position">
         
-      </div>
-      
-      <div class="col-12">
+        </div>
+        
+        <div class="col-12">
         <label for="company-email" class="form-label">company email</label>
         <input type="text" name="company-email" class="form-control" id="company-email">
         
-      </div>
-  
-      <div class="col-12">
+        </div>
+
+        <div class="col-12">
         <label for="company-telephone" class="form-label">company telephone</label>
         <input type="text" name="company-telephone" class="form-control" id="company-telephone">
         
-      </div>
-      <br>
-      <div class="col-12">
+        </div>
+        <br>
+        <div class="col-12">
         <button class="btn btn-success w-10 add-comp" type="submit">Add</button>
-      </div>
-  </div>`
+        </div>
+    </div>`
 
   let createElement=(template)=>{
     let temp=document.createElement('div')
