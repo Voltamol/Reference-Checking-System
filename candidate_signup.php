@@ -1,7 +1,7 @@
 <?php
 session_start();
-$username="";
-$isadmin="";
+$_SESION['username'];
+$_SESSION['isadmin'];
 
  include "includes/connection.php";
  include "includes/trim.php";
@@ -23,6 +23,8 @@ if($col){
    $sql1="INSERT INTO `login`(`lod_id`,`email`,`password`,`is_admin`)VALUES('$id','$email','$password','$isadmin')";
    $data= mysqli_query($conn,$sql1);
     if($results && $data){
+      $_SESSION['username']=$email;
+      $_SESSION['isadmin']=$isadmin;
     header("Location:candidate profile view.php");
   }else{ 
       echo("Location:candidate_signup.php");

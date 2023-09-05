@@ -8,7 +8,8 @@ $_SESSION[`isadmin`];
 
 if(isset($_POST['submit'])){
 	$Email= $_POST['email'];
-	$Password = $_POST['pass'];
+	$Password = $_POST['password'];
+  $isadmin=0;
 
 	  //select data where email, pass match
     //check if rows returned =1
