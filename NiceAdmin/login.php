@@ -12,6 +12,7 @@ if(isset($_POST['submit'])){
   $isadmin=0;
 
 	  //select data where email, pass match
+    $sql= "SELECT* FROM `login` WHERE email=$Email && password=$Password"; 
     //check if rows returned =1
     //check if isadmin
         //session and direct to admin
