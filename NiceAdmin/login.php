@@ -1,19 +1,46 @@
 <?php 
 session_start();
-$_SESSION[`username`];
-$_SESSION[`isadmin`];
+$_SESSION[`username`]="";
+$_SESSION[`isadmin`]="";
+
 
  include "includes/connection.php";
  include "includes/trim.php";
+ $error= "";
 
 if(isset($_POST['submit'])){
-	$Email= $_POST['email'];
-	$Password = $_POST['password'];
-  $isadmin=0;
+	$email= input_val($_POST['email']);
+	$password = input_val($_POST['password']);
+  $col=mysqli_query($conn,"SELECT * FROM `login`");
+  if($col){
+    $id=$col->num_rows;
+    $id++;
+  }
 
 	  //select data where email, pass match
-    $sql= "SELECT* FROM `login` WHERE email=$Email && password=$Password"; 
+    $sql= "SELECT * FROM `login` WHERE `email`='$email' && `password`='$password'"; 
+    $results= mysqli_query($conn,$sql);
+    $data=mysqli_fetch_assoc($results);
+$rowcount=$results->num_rows;
+           if($rowcount==1){
+            $_SESSION['username']=$email;
+             $_SESSION['isadmin']=$data['isadmin'];
+             
+             $isadmin=$data['isadmin'];
+                if($isadmin==1){
+                  header("Location:index.php");//redirect to admin index
+                }else{
+                  header("Location:candidate profile view.php");
+                }
+             }else{
+              
+     $error= "<div class='alert alert-danger text-center'><strong>Wrong Credentials</strong></div>";
+   
+             }
+		}
     //check if rows returned =1
+    
+    
     //check if isadmin
         //session and direct to admin
 
@@ -21,7 +48,6 @@ if(isset($_POST['submit'])){
     //return login with error msg
 
      
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,11 +128,16 @@ if(isset($_POST['submit'])){
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
+                    <?php
+                    if ($error){
+                      echo $error;
+                    }
+                    ?>
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your email & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="login.php" method="post" class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Email</label>
@@ -129,7 +160,7 @@ if(isset($_POST['submit'])){
                       </div>
                     </div>
                     <div class="col-12">
-                      <a href="candidate profile view.html" class="btn btn-primary">LogIn</a>
+                      <button class="btn btn-primary" name="submit" type="submit">LogIn</buttom>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="candidate_signup.html">Create an account</a></p>
