@@ -13,7 +13,7 @@ if($_POST[submit]){
   $pic=$_POST['photo'];
   $email=$_SESSION['username'];
   $sql="INSERT INTO candidates(`image`,`cv`)VALUES('$pic','file')";
-  $sql1="INSERT INTO reference(`ref_id`,`candidate_id`,`ref_name`,`position`,`phone`,`email`,`company_name`,`date_sent`)VALUES('$ref_id','$can_id','$referee','$email',)";
+  $sql1="INSERT INTO reference(`ref_id`,`candidate_id`,`ref_name`,`phone`,`email`,`company_name`,`date_sent`)VALUES('$ref_id','$can_id','$referee','$email',)";
 
 }
 
@@ -221,7 +221,8 @@ if($_POST[submit]){
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-<script>
+
+  <script>
   let template=`    <div>
       <div class="col-12">
         <label for="company-name" class="form-label">company name</label>
