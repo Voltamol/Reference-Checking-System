@@ -262,7 +262,7 @@
                 <p class="text-center small">Upload your CV and a passport sized photo</p>
               </div>
 
-              <form class="row g-3 needs-validation" novalidate>
+              <form class="row g-3 needs-validation final" novalidate>
 
                 <div class="hidden hidden-controls">
                   <div class="col-12">
@@ -291,6 +291,12 @@
                   
                 </div>
             
+                
+                <div class="col-12">
+                  <label for="company-telephone" class="form-label">Job Title</label>
+                  <input type="text" name="job-title" class="form-control" id="job-title">
+                  
+                </div>
 
                 <div class="col-12">
                   <label for="yourUsername" class="form-label">CV</label>
@@ -309,7 +315,8 @@
                   <button class="btn btn-primary w-10" type="submit">Submit</button>
                 </div>-->
                 <div class="col-12 submit-col">
-                  <a  href="candidate profile view.html" class="btn btn-primary w-10" type="submit">Submit</a>
+                  <!--<a  href="candidate profile view.html" class="btn btn-primary w-10" type="submit">Submit</a>-->
+                  <button type="submit" class="btn btn-primary">submit</button>
                 </div>
               </form>
             </div> 
@@ -342,25 +349,25 @@
   let template=`    <div>
       <div class="col-12">
         <label for="company-name" class="form-label">company name</label>
-        <input type="text" name="company-name" class="form-control" id="company-name">
+        <input type="text" name="company" class="form-control">
       
       </div>
   
       <div class="col-12">
         <label for="referee-name" class="form-label">referee name</label>
-        <input type="text" name="referee-name" class="form-control" id="referee-name">
+        <input type="text" name="referee" class="form-control">
         
       </div>
   
       <div class="col-12">
         <label for="company-email" class="form-label">company email</label>
-        <input type="text" name="company-email" class="form-control" id="company-email">
+        <input type="text" name="email" class="form-control">
         
       </div>
   
       <div class="col-12">
         <label for="company-telephone" class="form-label">company telephone</label>
-        <input type="text" name="company-telephone" class="form-control" id="company-telephone">
+        <input type="text" name="telephone" class="form-control">
         
       </div>
       <br>
@@ -373,7 +380,6 @@
     let temp=document.createElement('div')
     temp.innerHTML=template
     let element=temp.lastChild
-    console.log(element)
     return element
 }
 let inputFields;
@@ -390,13 +396,22 @@ let btnParent;
     btnParent.classList.add('hidden')
   })
 
+  let addValue=(value,id,groupname)=>{
+    if(groupname.querySelector(`#${id}`).value==''){
+      groupname.querySelector(`#${id}`).value+=`${value}`
+    }else{
+      groupname.querySelector(`#${id}`).value+=`;${value}`
+    }
+    
+  }
+
   document.querySelector('.reference-data').addEventListener('submit',(e)=>{
     e.preventDefault()
     let form=e.target
-    let companyName=form['company-name'].value
-    let refereeName=form['referee-name'].value
-    let companyEmail=form['company-email'].value
-    let companyTelephone=form['company-telephone'].value
+    let companyName=form['company'].value
+    let refereeName=form['referee'].value
+    let companyEmail=form['company'].value
+    let companyTelephone=form['telephone'].value
     let compTemplate=`<div class="col-12">
                 <input class="form-control" type="text" placeholder="${companyName}" aria-label="Disabled input example" disabled>
                 
@@ -410,10 +425,11 @@ let btnParent;
     btnParent.classList.remove('hidden')
     let [form1,submitForm]=Array.from(document.getElementsByTagName('form'))
     let controls=submitForm.querySelector('.hidden-controls')
-    controls.querySelector('#company-name').value+=` ${companyName}`
-    controls.querySelector('#referee-name').value+=` ${refereeName}`
-    controls.querySelector('#company-email').value+=` ${companyEmail}`
-    controls.querySelector('#company-telephone').value+=` ${companyTelephone}`
+    //---------------------------------------------------------------------------------
+    addValue(companyName,'company-name',controls)
+    addValue(refereeName,'referee-name',controls)
+    addValue(companyEmail,'company-email',controls)
+    addValue(companyTelephone,'company-telephone',controls)
   })
    
 </script>
