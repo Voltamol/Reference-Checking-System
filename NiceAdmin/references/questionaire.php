@@ -12,10 +12,18 @@ if(isset($_POST["submit"])){
   $reliability=input_val($_POST["reliability"]);
   $id=000;
   $id2=111;
+  $response=input_val($_POST["response"]);
+  $col=mysqli_query($conn,"SELECT * FROM `candidates`");
+if($col){
+  $id3=$col->num_rows;
+  $id3++;
+}
 
   $sql="INSERT INTO `scores`(`candidate_id`,`problem_solving`,`comm_skills`,`time_mangmt`,`creativity`,`will_to_learn`,`team_work`,`reliability`,`ref_id`)VALUES('$id','$prob_solving','$commskills','$time_mangmnt','$creativity','$will_to_learn','$teamwork','$reliability','$id2')";
   $results = mysqli_query($conn,$sql);
-    if($results){
+  $sql1="INSERT INTO`ref_responses`(`ref_id`,`response_id`,`question_id`,`response`)VALUES('$id2','$id3','$id3','$response')";
+  $data= mysqli_query($conn,$sql1);
+    if($results && $data){
     header("Location:thank_you.php");
   }else{ 
       echo("");
@@ -157,7 +165,7 @@ if(isset($_POST["submit"])){
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+              <textarea class="form-control" name="response" id="exampleTextarea" rows="5"></textarea>
             </div>
           </div>
         </div>
@@ -169,7 +177,7 @@ if(isset($_POST["submit"])){
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+              <textarea class="form-control"  name="response" id="exampleTextarea" rows="5"></textarea>
             </div>
           </div>
         </div>
@@ -181,7 +189,7 @@ if(isset($_POST["submit"])){
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+              <textarea class="form-control" name="response" id="exampleTextarea" rows="5"></textarea>
             </div>
           </div>
         </div>
@@ -193,7 +201,7 @@ if(isset($_POST["submit"])){
           </h2>
           <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+              <textarea class="form-control" name="response" id="exampleTextarea" rows="5"></textarea>
             </div>
           </div>
         </div>
@@ -205,7 +213,7 @@ if(isset($_POST["submit"])){
           </h2>
           <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <textarea class="form-control" id="exampleTextarea" rows="5"></textarea>
+              <textarea class="form-control" name="response" id="exampleTextarea" rows="5"></textarea>
             </div>
           </div>
           <br>
