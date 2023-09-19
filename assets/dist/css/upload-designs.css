@@ -1,8 +1,0 @@
-.upload-area{
-    position: relative;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 4px dashed var(--wireframe-theme);
-    color: var(--dark);
-    font-family: 'Comfortaa',serif;
-}

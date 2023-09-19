@@ -1,8 +1,0 @@
-.inherit-background{
-    background-color: inherit;
-}
-
-.invert-color{
-    filter: invert();
-}
-
