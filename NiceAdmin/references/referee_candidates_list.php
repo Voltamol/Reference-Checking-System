@@ -1,3 +1,18 @@
+<?php
+ include "../includes/connection.php";
+ include "../includes/trim.php";
+
+ 
+ $query="SELECT * from candidates";
+ $result = mysqli_query($conn,$query);
+ while( $data=mysqli_fetch_assoc($result)){
+  $id=$data['id'];
+$Name=$data['name'];
+$position=$data[''];
+$image=$data[''];
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +25,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../assets/img/favicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -27,7 +42,7 @@
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <style>
     .hidden{
@@ -52,7 +67,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="../assets/img/logo.png" alt="">
+        <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Reference Checking</span>
       </a>
       <!--<i class="bi bi-list toggle-sidebar-btn"></i> -->
@@ -90,27 +105,27 @@
                   <tr>
                     <td>Brandon Jacob</td>
                     <td>Designer</td>
-                    <td"../assets/img/profile-img.jpg</td>
+                    <td>assets/img/profile-img.jpg</td>
                   </tr>
                   <tr>
                     <td>Bridie Kessler</td>
                     <td>Developer</td>
-                    <td class="hidden""../assets/img/profile-img2.jpg</td>
+                    <td class="hidden">assets/img/profile-img2.jpg</td>
                   </tr>
                   <tr>
                     <td>Ashleigh Langosh</td>
                     <td>Finance</td>
-                    <td"../assets/img/profile-img3.jpg</td>
+                    <td>assets/img/profile-img3.jpg</td>
                   </tr>
                   <tr>
                     <td>Angus Grady</td>
                     <td>HR</td>
-                    <td"../assets/img/profile-img4.jpg</td>
+                    <td>assets/img/profile-img4.jpg</td>
                   </tr>
                   <tr>
                     <td>Raheem Lehner</td>
                     <td>Dynamic Division Officer</td>
-                    <td"../assets/img/profile-img5.jpg</td>
+                    <td>assets/img/profile-img5.jpg</td>
                   </tr>
                 </tbody>
               </table>
@@ -131,7 +146,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
               <h2>Kevin Anderson</h2>
               
               <!-- <div class="social-links mt-2">
@@ -210,7 +225,7 @@
   <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     let displayAttributes=(row)=>{
         let [fullName,role,img]=Array.from(row.getElementsByTagName('td'))
