@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php 
 session_start();
 $_SESSION[`username`]="";
@@ -49,6 +50,8 @@ $rowcount=$results->num_rows;
 
      
 ?>
+=======
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,16 +131,23 @@ $rowcount=$results->num_rows;
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
+<<<<<<< Updated upstream
                     <?php
                     if ($error){
                       echo $error;
                     }
                     ?>
+=======
+>>>>>>> Stashed changes
                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your email & password to login</p>
                   </div>
 
+<<<<<<< Updated upstream
                   <form action="login.php" method="post" class="row g-3 needs-validation" novalidate>
+=======
+                  <form class="row g-3 needs-validation" novalidate>
+>>>>>>> Stashed changes
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Email</label>
@@ -160,7 +170,11 @@ $rowcount=$results->num_rows;
                       </div>
                     </div>
                     <div class="col-12">
+<<<<<<< Updated upstream
                       <button class="btn btn-primary" name="submit" type="submit">LogIn</buttom>
+=======
+                      <a href="candidate profile view.html" class="btn btn-primary">LogIn</a>
+>>>>>>> Stashed changes
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="candidate_signup.html">Create an account</a></p>
