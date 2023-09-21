@@ -1,7 +1,9 @@
+<<<<<<< Updated upstream
+=======
 <?php
 session_start();
-$_SESION['username']="";
-$_SESSION['isadmin']="";
+$_SESSION['username'];
+$_SESSION['isadmin'];
 
  include "includes/connection.php";
  include "includes/trim.php";
@@ -197,3 +199,4 @@ if($col){
 </body>
 
 </html>
+>>>>>>> Stashed changes
