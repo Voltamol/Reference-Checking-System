@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 <?php
 session_start();
 $_SESSION['username'];
