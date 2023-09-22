@@ -36,74 +36,80 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    #pos {
+      margin-top: 0px;
+      padding: 20px 10px;
+      transition: all 0.3s;
+    
+    }
+    @media (max-width: 1000px) {
+      #pos {
+        padding: 100px;
+      }
+    }
+    @media (min-width: 1200px) {
+    
+      #pos {
+        margin-left: 100px;
+        margin-right: 150px;
+      }
+    }
+
+  </style>
   
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
- 
-  <header id="header" class="header fixed-top d-flex align-items-center ">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block ">Reference Checking</span>
-      </a>
-      
-    </div><!-- End Logo -->
-
-      <!--<form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div> --><!-- End Search Bar -->
-
-  </header><!-- End Header -->
-  
-  <main class="bg-light" id="position" class="position">
-    <div class="container">
-        <div class="card p-6 p-lg-10 space-y-4">
-            <p style="padding-left: 10px;">
-            <br>
-            Dear {candidate name}
-            <br>
-            <br>
-            {candidates} are applying for a job at {company name}. Your name and email address were provided by them on the
-            understanding that you are willing to receive communications for the purpose of providing feedback on their skills 
-            and behaviors. Receiving your feedback is a core component of their eligibility for the job they are applying for.
-            <br>
-            <br>
-            Please take 5-10 minutes to complete the online questionnaire <a href="references/referee_candidates_list.php">here</a>
-            in a space of three days.
-            <br>
-            <br>
-            Please note the following:
-            <br>
-            <br>
-            - Your name and email address will not be used for any other purpose and will not be shared with any external parties.
-            <br>
-            <br>
-            -Accessing the link provided above constitutes acceptance of this use of your personal 
-            <br>
-            <br>
-            Thank you,
-            <br>
-            <br>
-            HR
-            </p>
-        
-    
-        </div>
-        
-        <div class="credits text-center">
+  <main class="bg-light" id="pos"  >
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <div class="card-fluid d-flex align-items-center justify-content-center">
+        <div class="card-body bg-secondary"><br>
+          <div class="card pt-6 p-lg-8 space-y-4 ">
+              <p style="padding-left: 10px; color:rgb(3, 3, 104);">
+              <br>
+              Dear <b>{candidate name}</b>
+              <br>
+              <br>
+              <b>{candidates}</b> are applying for a job at <b>{company name}</b>. Your name and email address were provided by them on the
+              understanding that you are willing to receive communications for the purpose of providing feedback on their skills 
+              and behaviors. Receiving your feedback is a core component of their eligibility for the job they are applying for.
+              <br>
+              <br>
+              Find attached below a link to a list of candidates who have referenced you.
+              <br>
+              <br>
+              Please note the following:
+              <br>
+              <br>
+              - Your name and email address will not be used for any other purpose and will not be shared with any external parties.
+              <br>
+              <br>
+              -Accessing the link provided above constitutes acceptance of this use of your personal 
+              <br>
+              <br>
+              Thank you,
+              <br>
+              <br>
+              HR
+              </p>
+             
+              <div class="col-12 text-center">
+                <a href="references/referee_candidates_list.php" class="btn btn-primary"> View Candidates</a>
+              </div>
+              <br>
+          </div> 
+          <div class="credits text-center">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
             Designed by <a href="https://bakertilly.site/">B@kertilly</a>
-        </div>
-        </div>
+        </div>   
+        </div> 
+      </div>
+    </div>  
+    </div>
     
     </div>
      
