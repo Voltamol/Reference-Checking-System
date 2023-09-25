@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php 
 session_start();
 $_SESSION[`username`]="";
@@ -50,8 +49,6 @@ $rowcount=$results->num_rows;
 
      
 ?>
-=======
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 
