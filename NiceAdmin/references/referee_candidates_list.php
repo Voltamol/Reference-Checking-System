@@ -1,18 +1,13 @@
 <?php
- include "../includes/connection.php";
- include "../includes/trim.php";
+$query="SELECT * from ";
+$result = mysqli_query($con,$query);
+//create a select query
+//get numrows
+//loop number of rows
+//getdata 
+while( $data=mysqli_fetch_assoc($result))
 
- 
- $query="SELECT * from candidates";
- $result = mysqli_query($conn,$query);
- while( $data=mysqli_fetch_assoc($result)){
-  $id=$data['id'];
-$Name=$data['name'];
-$position=$data[''];
-$image=$data[''];
- }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +20,8 @@ $image=$data[''];
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -42,7 +37,7 @@ $image=$data[''];
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
 
   <style>
     .hidden{
@@ -95,6 +90,7 @@ $image=$data[''];
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
+
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>

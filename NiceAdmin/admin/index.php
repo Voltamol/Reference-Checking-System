@@ -1,3 +1,39 @@
+<?php
+ include "../includes/connection.php";
+ include "../includes/trim.php";
+
+ $columns=("company_name,ref_name,phone,status");
+
+$sql="SELECT $columns FROM reference";
+$result=mysqli_query($conn,$sql);
+
+while($row=mysqli_fetch_assoc($result)){
+
+    $company_name= $row['company_name'];
+    $referee_name=$row['ref_name'];
+    $status=$row['status'];
+    $phone_number=$row['phone'];
+}
+$query="SELECT * FROM`reference` WHERE`status`='pending'";
+$result1= mysqli_query($conn,$query);
+$data1=mysqli_fetch_assoc($result1);
+$rowcount=$result1->num_rows;
+?>
+<?php
+$sql2="SELECT * FROM`reference` WHERE`status`='in_progress'";
+$result2= mysqli_query($conn,$sql2);
+$data2=mysqli_fetch_assoc($result2);
+$rowcount2=$result2->num_rows;
+?>
+
+<?php
+$sql1="SELECT * FROM`reference` WHERE`status`='completed'";
+$result3= mysqli_query($conn,$sql1);
+$data3=mysqli_fetch_assoc($result3);
+$rowcount3=$result3->num_rows;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -345,7 +381,7 @@
                       <i class="bi bi-envelope-open"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6><?php echo $rowcount ?></h6>
                       <!--<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>-->
 
                     </div>
@@ -369,7 +405,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>435</h6>
+                      <h6><?php echo $rowcount2 ?></h6>
                       <!--<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>-->
 
                     </div>
@@ -392,7 +428,7 @@
                       <i class="bi bi-hand-thumbs-up"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>420</h6>
+                      <h6><?php echo $rowcount3 ?></h6>
                       <!--<span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>-->
 
                     </div>
@@ -421,14 +457,14 @@
                   <tbody>
                     <tr>
                       
-                      <td>BakerTilly</td>
-                      <td><a href="#" class="text-primary">Martin Muduva</a></td>
-                      <td><span class="badge bg-success">Completed</span></td>
-                      <td>(+263)732 488 904</td>
+                      <td><?php echo $company_name ?> </td>
+                      <td><a href="#" class="text-primary"><?php echo $referee_name ?></a></td>
+                      <td><span class="badge bg-success"><?php echo $status ?></span></td>
+                      <td><?php echo $phone_number ?></td>
                     </tr>
                     <tr>
                       
-                      <td>BakerTilly</td>
+                     <!-- <td>BakerTilly</td>
                       <td><a href="#" class="text-primary">Wise Billionaire</a></td>
                       <td><span class="badge bg-warning">Pending</span></td>
                       <td>(+263)751 261 018</td>
@@ -441,7 +477,7 @@
                       <td>(+263)722 301 915</td>
                     </tr>
                     <tr>
-                      
+                    
                       <td>Ey</td>
                       <td><a href="#" class="text-primar">CZ</a></td>
                       <td><span class="badge bg-primary">In progress</span></td>
@@ -453,7 +489,7 @@
                       <td><a href="#" class="text-primary">Simbai Nyama</a></td>
                       <td><span class="badge bg-success">Completed</span></td>
                       <td>(+263)788 645 122</td>
-                    </tr>
+                    </tr>-->
                   </tbody>
                 </table>
 
@@ -583,7 +619,7 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">B@kertilly</a>
+      Designed by <a href="https://bakertilly.site/baker-tilly-digital/">B@kertilly</a>
     </div>
   </footer><!-- End Footer -->
 

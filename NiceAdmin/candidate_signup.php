@@ -1,9 +1,7 @@
-<<<<<<< Updated upstream
-=======
 <?php
 session_start();
-$_SESSION['username'];
-$_SESSION['isadmin'];
+$_SESSION['username']= "";
+$_SESSION['isadmin'] = "";
 
  include "includes/connection.php";
  include "includes/trim.php";
@@ -27,7 +25,7 @@ if($col){
     if($results && $data){
       $_SESSION['username']=$email;
       $_SESSION['isadmin']=$isadmin;
-    header("Location:candidate profile view.php");
+    header("Location:candidates/candidate_idx.php");
   }else{ 
       echo("Location:candidate_signup.php");
     }
