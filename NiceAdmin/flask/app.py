@@ -20,7 +20,8 @@ class Sentiment(db.Model):
         self.sentiment = sentiment
 
 # Create the database tables
-#db.create_all()
+with app.app_context():
+    db.create_all()
 
 # Load the TensorFlow model for sentiment analysis
 #model = tf.keras.models.load_model('models/comment_classifier_model.h5')
@@ -32,9 +33,8 @@ def ask_question():
 # Define the route for model prediction and saving to the database
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get the input data from the request
-    data = request.json
-    response = data["opinion"]
+    
+    response = request.form.get("opinion")
     #print(response)
     return jsonify({'response':response})
     # Preprocess the input data (if required)
@@ -61,4 +61,4 @@ def predict():
 # Define the main entry point of the application
 if __name__ == '__main__':
     # Run the Flask app
-    app.run()
+    app.run(debug=True)
