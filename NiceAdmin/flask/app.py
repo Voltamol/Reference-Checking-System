@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify,render_template
 from flask_sqlalchemy import SQLAlchemy
 import tensorflow as tf
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # Create a Flask app
 app = Flask(__name__)
@@ -24,7 +26,20 @@ with app.app_context():
     db.create_all()
 
 # Load the TensorFlow model for sentiment analysis
-#model = tf.keras.models.load_model('models/comment_classifier_model.h5')
+model = tf.keras.models.load_model('models/comment_classifier_model.h5')
+
+def preprocess_input(user_input):
+    #-----------------------------------------------------------
+    max_words = 10000
+    max_len = 100
+    comments=user_input
+    #-----------------------------------------------------------
+    tokenizer = Tokenizer(num_words=max_words)
+    tokenizer.fit_on_texts(comments)
+    sequences = tokenizer.texts_to_sequences(comments)
+    padded_sequences = pad_sequences(sequences, maxlen=max_len)
+    #-----------------------------------------------------------
+    return padded_sequences
 
 @app.route('/', methods=['GET','POST'])
 def ask_question():
@@ -35,15 +50,16 @@ def ask_question():
 def predict():
     
     response = request.form.get("opinion")
-    #print(response)
-    return jsonify({'response':response})
+    
     # Preprocess the input data (if required)
     # ...
 
     # Perform prediction using the loaded model
-    prediction = model.predict(data)
-    sentiment = 'positive' if prediction > 0.5 else 'negative'
-
+    data=preprocess_input(response)
+    sentiment = model.predict(data)
+    
+    print('sentiment:',sentiment)
+    return jsonify({'status':'done'})
     # Postprocess the prediction (if required)
     # ...
 
@@ -53,7 +69,7 @@ def predict():
     db.session.commit()
 
     # Create a response dictionary
-    response = {'prediction': sentiment}
+    response = {'response':response,'prediction': sentiment}
 
     # Return the response as JSON
     return jsonify(response)
