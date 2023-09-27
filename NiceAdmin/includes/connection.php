@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost","root","","ref_sys");
+$conn = new mysqli("localhost","root","Phion@h123","refs");
 
 // Check connection
 if ($conn -> connect_errno) {
