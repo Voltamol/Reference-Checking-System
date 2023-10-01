@@ -7,7 +7,7 @@ from urllib.parse import quote_plus
 # Create a Flask app
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql://root:@localhost/ref_sys"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost/ref_sys"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
