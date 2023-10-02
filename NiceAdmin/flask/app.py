@@ -54,7 +54,6 @@ with app.app_context():
 with open("model.pickle","rb") as binary:
     model=pickle.load(binary)
 
-
 def classify_sentiment(comment):
     arr=np.array([comment])
     probabilities = model.predict_proba(arr)[0]
@@ -93,6 +92,37 @@ def predict():
     db.session.commit()
     # Return the response as JSON
     return jsonify({'sentiments':sentiments,"scores":scores})
+
+@app.route('/report',methods=['GET'])
+def report():
+    return render_template('Candidate Reports.html')
+
+@app.route('/candidateData/<candidateName>')
+def getCandidateData(candidateName):
+    imageName="profile-img.jpg"
+    data:dict={
+        candidateName:{
+        'sentiments':{
+            'positive':75,
+            'negative':5,
+            'neutral':20
+        },
+        'conclusion':'suitable',
+        'analytics':{
+                'individual_scores':{
+                'bakertilly':[65, 59, 90, 81, 56, 55, 40],
+                'econet':[240, 100,45,100,200,100, 100]
+                },
+                'average_scores':[30, 100,100,100,200,100, 100]
+            },
+        'email':'martinmuduva@baker.co.zw',
+        'role':'Designer',
+        'phone':'+263 713 859 053',
+        'img':"/static/assets/img/{}".format(imageName),
+        'references':['bakertilly','econet']
+        }
+    }
+    return jsonify(data)
 
 # Define the main entry point of the application
 if __name__ == '__main__':

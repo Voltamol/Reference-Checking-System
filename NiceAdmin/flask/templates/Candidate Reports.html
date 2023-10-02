@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Candidate Report</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+  <script src="{{ url_for('static', filename='assets/js/varyingColors.js') }}"></script>
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Jul 27 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+    .hidden{
+      display: none;
+    }
+    .card{
+      height: 100vh;
+    }
+    #print-button{
+      position: fixed;
+      bottom: 80px;
+      right:50px;
+      z-index: 1000;
+      padding: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body style="padding-top: 50px;">
+  <!--<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-center">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Reference Checking</span>
+      </a>
+    
+    </div>
+  </header>-->
+  <!-- ======= Header ======= -->
+  <br>
+  <main id="main" class="main" style="margin: 0;">
+    <!--<i class="bi bi-file-earmark-pdf bg-primary rounded" id="print-button" data-bs-toggle="tooltip" data-bs-placement="top" title="print to pdf"></i>-->
+    
+    <section class="section">
+      <div class="row">
+      
+        <div class="col">
+
+          <div class="card" style="height: 100px;">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" style="gap: 10px;">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analytics">Analytics</button>
+                </li>
+                
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade active show profile-overview" id="analytics">
+                  
+                </div>
+
+  
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+          <div class="card card1">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center justify-content-center">
+<!-- Template Main JS File -->
+              <img src="{{ url_for('static', filename='assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle" width="300">
+              <h2>Dyllan Baloyi</h2>
+              
+            </div>
+          </div>
+          <div class="card" style="height: 100px;">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" style="gap: 10px;">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analytics">Analytics</button>
+                </li>
+                
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade active show profile-overview" id="analytics">
+                  
+                </div>
+
+  
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">average opinion towards candidate from previous employers</h5>
+
+              <!-- Bar Chart -->
+              <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script>
+                let sentimentsBar;
+                let setSentiments=(fullname,relatedData)=>{
+                  console.log('related data in sentiments',relatedData)
+                  let candidateData=relatedData[fullname]
+                  if(!candidateData) return
+                  let sentiments=relatedData[fullname].sentiments
+                  if(!sentimentsBar){
+                    sentimentsBar=new Chart(document.querySelector('#barChart'), {
+                    type: 'bar',
+                    data: {
+                      labels: ['Positive', 'Negative', 'Neutral'],
+                      datasets: [{
+                        label: 'Employer Sentiments',
+                        data: [sentiments.positive, sentiments.negative,sentiments.neutral],
+                        backgroundColor: [
+                          'rgba(50,255,50,0.8)',
+                          'rgba(255, 50, 50, 0.8)',
+                          'rgba(50, 50, 255, 0.8)',
+                          
+                        ],
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                
+                  }else{
+
+                  }
+                }
+                
+              </script>
+              <!-- End Bar CHart -->
+
+            </div>
+          </div>
+          <div class="card" style="height: 100px;">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" style="gap: 10px;">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analytics">Analytics</button>
+                </li>
+                
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade active show profile-overview" id="analytics">
+                  
+                </div>
+
+  
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Average of scores</h5>
+
+              <!-- Doughnut Chart -->
+              <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+                      <script>
+                        
+                         
+                        let doughnut;
+                        let createChart=(fullname,relatedData)=>{
+                        let candidateInfo=relatedData[fullname]
+                        if(!candidateInfo)return
+                        let scores=relatedData[fullname].analytics.average_scores
+                        if(!doughnut){
+                        doughnut=new Chart(document.querySelector('#doughnutChart'), {
+                          type: 'doughnut',
+                          data: {
+                            labels: [
+                                'Problem Solving',
+                                'Communication Skills',
+                                'Time Management',
+                                'Creativity',
+                                'Willingness to learn',
+                                'TeamWork',
+                                'Reliable'
+                              ],
+                              datasets: [{
+                                label: 'Average Score',
+                                data: scores,
+                                fill: true,
+                                backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 205, 86)',
+                                  'rgb(255, 86, 205)',
+                                  'rgb(86,255,  205)',
+                                  'rgb(100, 162, 235)',
+                                  'rgb(180,255,180)',
+                                ],
+                                
+                                pointBackgroundColor: 'rgb(255, 99, 132)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                              },]
+                            }
+                        });
+                                          
+                      }else{
+                        doughnut.data.datasets[0].data=scores
+                        doughnut.update()
+                      }
+                      }
+                        // document.addEventListener("DOMContentLoaded", () => {
+                        //   let data=[65, 59, 90, 81, 56, 55, 40]
+                        //   createChart(data)
+                        // })
+                      </script>
+              <!-- End Doughnut CHart -->
+
+            </div>
+          </div>
+          <div class="card" style="height: 100px;">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" style="gap: 10px;">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analytics">Analytics</button>
+                </li>
+                
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade active show profile-overview" id="analytics">
+                  
+                </div>
+
+  
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+          <!--<div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Scores from references</h5>
+
+              
+              <canvas id="radarChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#radarChart'), {
+                    type: 'radar',
+                    data: {
+                      labels: [
+                        'Problem Solving',
+                        'Communication Skills',
+                        'Time Management',
+                        'Creativity',
+                        'Willingness to learn',
+                        'TeamWork',
+                        'Reliable'
+                      ],
+                      datasets: [{
+                        label: 'BakerTilly',
+                        data: [65, 59, 90, 81, 56, 55, 40],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(255, 99, 132)'
+                      }, {
+                        label: 'Econet',
+                        data: [28, 48, 40, 19, 96, 27, 100],
+                        fill: true,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        pointBackgroundColor: 'rgb(54, 162, 235)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(54, 162, 235)'
+                      }]
+                    },
+                    options: {
+                      elements: {
+                        line: {
+                          borderWidth: 3
+                        }
+                      }
+                    }
+                  });
+                });
+              </script>
+              
+              <h5 class="card-title">Conclusion</h5>
+
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                candidate is suitable for hiring
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>-->
+
+          
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Conclusion</h5>
+
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                <p></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+<script src="{{ url_for('static', filename='assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/chart.js/chart.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/echarts/echarts.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/quill/quill.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+  <script>
+    setTimeout(print,2000)
+    
+  </script>
+
+<script>
+
+ 
+  let paletteIndex=0
+  let colorPalette=[
+    'rgba(54, 162, 235, 0.8)', // Blue
+    'rgba(255, 99, 132, 0.8)', // Red
+    'rgba(255, 205, 86, 0.8)', // Yellow
+    'rgba(75, 192, 192, 0.8)', // Teal
+    'rgba(153, 102, 255, 0.8)', // Purple
+    'rgba(255, 159, 64, 0.8)', // Orange
+    'rgba(255, 0, 0, 0.8)', // Bright Red
+    'rgba(0, 255, 0, 0.8)', // Bright Green
+    'rgba(255, 0, 255, 0.8)', // Magenta
+    'rgba(0, 255, 255, 0.8)' // Cyan
+  ]
+  let datasetTemplate={
+    label: '',
+    data: [],
+    fill: true,
+    backgroundColor: '',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }
+
+    
+  let conclusions={
+    suitable:{
+      message:'candidate is suitable for hiring',
+      alertClass:['alert-danger','alert-success'],
+      icon:'bi-check-circle'
+    },
+    not_suitable:{
+      message:'candidate is not suitable for hiring',
+      alertClass:['alert-success','alert-danger'],
+      icon:'bi-x-circle'
+    }
+  }
+  
+
+  let candidateName='Brandon Jacob'
+  let url=`candidateData/${candidateName}`
+  let relatedData={}
+
+  
+let setConclusion=(fullname,relatedData)=>{
+ 
+  let candidateInfo=relatedData[fullname]
+  if(!candidateInfo) return
+  let conclusion=relatedData[fullname].conclusion
+  let alert=document.querySelector('.alert')
+  let correspondingOutput=conclusions[conclusion]
+
+  let [oldClass,newClass]=correspondingOutput.alertClass
+  alert.classList.remove(oldClass)
+  alert.classList.add(newClass)
+  alert.querySelector('i').classList.add(correspondingOutput.icon)
+  alert.querySelector('p').innerText=correspondingOutput.message
+}
+
+let displayAttributes=(fullname)=>{
+  let card1=document.querySelector('.card1')
+  let [FirstName,LastName]=fullname.split(' ')
+  card1.querySelector('h2').innerText=`${FirstName} ${LastName}`
+  
+  fetch(url)
+  .then(response => {
+    console.log(response.status);
+    return response.json(); // Return the promise
+  })
+  .then(data => {
+    let img=data.img
+    console.log(img)
+    card1.querySelector('img').src="{{url_for('static', filename='assets/img/profile-img.jpg')}}"
+    setSentiments(fullname,data)
+    setConclusion(fullname,data)
+    //resetAverageScores(fullname)
+    createChart(fullname,data)
+    //createBars(fullname,data)
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+  
+}
+  //setting first row as default display
+displayAttributes(candidateName)
+  </script>
+</body>
+
+</html>
