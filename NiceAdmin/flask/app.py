@@ -69,7 +69,7 @@ def ask_question():
 def predict():
     
     opinion = request.form.get("opinion")
-    scores={
+    scores_={
         "problem_solving":request.form.get("problem_solving"),
         "communication_skills":request.form.get("communication_skills"),
         "time_management":request.form.get("time_management"),
@@ -86,12 +86,12 @@ def predict():
     sentiments={'response':opinion,**sentiments}
     # Save the response and sentiment to the database
     sentiment_entry = Sentiment(**sentiments)
-    scores=Scores(**scores)
+    scores=Scores(**scores_)
     db.session.add(sentiment_entry)
     db.session.add(scores)
     db.session.commit()
     # Return the response as JSON
-    return jsonify({'sentiments':sentiments,"scores":scores})
+    return jsonify({'sentiments':sentiments,"scores":scores_})
 
 @app.route('/report',methods=['GET'])
 def report():
