@@ -12,6 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Define the Sentiment model for the database
+
 class Sentiment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     response = db.Column(db.String(500))
@@ -25,9 +26,30 @@ class Sentiment(db.Model):
         self.negative=negative
         self.neutral=neutral
 
+# Define the Skills model
+class Scores(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    communication_skills = db.Column(db.Float)
+    creativity = db.Column(db.Float)
+    problem_solving = db.Column(db.Float)
+    reliability = db.Column(db.Float)
+    team_work = db.Column(db.Float)
+    time_management = db.Column(db.Float)
+    willingness_to_learn = db.Column(db.Float)
+
+    def __init__(self, communication_skills, creativity, problem_solving, reliability, team_work, time_management, willingness_to_learn):
+        self.communication_skills = communication_skills
+        self.creativity = creativity
+        self.problem_solving = problem_solving
+        self.reliability = reliability
+        self.team_work = team_work
+        self.time_management = time_management
+        self.willingness_to_learn = willingness_to_learn
+
 # Create the database tables
 with app.app_context():
     db.create_all()
+
 
 with open("model.pickle","rb") as binary:
     model=pickle.load(binary)
@@ -48,7 +70,15 @@ def ask_question():
 def predict():
     
     opinion = request.form.get("opinion")
-    
+    scores={
+        "problem_solving":request.form.get("problem_solving"),
+        "communication_skills":request.form.get("communication_skills"),
+        "time_management":request.form.get("time_management"),
+        "creativity":request.form.get("creativity"),
+        "willingness_to_learn":request.form.get("willingness_to_learn"),
+        "team_work":request.form.get("team_work"),
+        "reliability":request.form.get("reliability")
+    }
     # Preprocess the input data (if required)
     # ...
 
@@ -57,10 +87,12 @@ def predict():
     sentiments={'response':opinion,**sentiments}
     # Save the response and sentiment to the database
     sentiment_entry = Sentiment(**sentiments)
+    scores=Scores(**scores)
     db.session.add(sentiment_entry)
+    db.session.add(scores)
     db.session.commit()
     # Return the response as JSON
-    return jsonify({'sentiments':sentiments})
+    return jsonify({'sentiments':sentiments,"scores":scores})
 
 # Define the main entry point of the application
 if __name__ == '__main__':
