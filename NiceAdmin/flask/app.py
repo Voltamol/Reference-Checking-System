@@ -31,6 +31,7 @@ class Sentiment(db.Model):
 class Scores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     candidate_name = db.Column(db.String(100), db.ForeignKey('candidate.name'))
+    respondent= db.Column(db.String(50))
     communication_skills = db.Column(db.Float)
     creativity = db.Column(db.Float)
     problem_solving = db.Column(db.Float)
@@ -52,7 +53,6 @@ class Scores(db.Model):
 # Create the database tables
 with app.app_context():
     db.create_all()
-
 
 with open("model.pickle","rb") as binary:
     model=pickle.load(binary)
