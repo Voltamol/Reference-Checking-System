@@ -15,20 +15,22 @@ db = SQLAlchemy(app)
 
 class Sentiment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    candidate_name = db.Column(db.String(100), db.ForeignKey('candidate.name'))
     response = db.Column(db.String(500))
     positive = db.Column(db.Float)
-    negative=db.Column(db.Float)
+    negative = db.Column(db.Float)
     neutral = db.Column(db.Float)
     
-    def __init__(self, response, positive,negative,neutral):
+    def __init__(self, candidate_name, response, positive, negative, neutral):
+        self.candidate_name = candidate_name
         self.response = response
         self.positive = positive
-        self.negative=negative
-        self.neutral=neutral
+        self.negative = negative
+        self.neutral = neutral
 
-# Define the Skills model
 class Scores(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    candidate_name = db.Column(db.String(100), db.ForeignKey('candidate.name'))
     communication_skills = db.Column(db.Float)
     creativity = db.Column(db.Float)
     problem_solving = db.Column(db.Float)
@@ -37,7 +39,8 @@ class Scores(db.Model):
     time_management = db.Column(db.Float)
     willingness_to_learn = db.Column(db.Float)
 
-    def __init__(self, communication_skills, creativity, problem_solving, reliability, team_work, time_management, willingness_to_learn):
+    def __init__(self, candidate_name, communication_skills, creativity, problem_solving, reliability, team_work, time_management, willingness_to_learn):
+        self.candidate_name = candidate_name
         self.communication_skills = communication_skills
         self.creativity = creativity
         self.problem_solving = problem_solving
@@ -45,7 +48,7 @@ class Scores(db.Model):
         self.team_work = team_work
         self.time_management = time_management
         self.willingness_to_learn = willingness_to_learn
-
+         
 # Create the database tables
 with app.app_context():
     db.create_all()
