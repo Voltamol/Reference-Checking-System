@@ -1,0 +1,233 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 27, 2023 at 12:31 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ref_sys`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `candidates`
+--
+
+CREATE TABLE `candidates` (
+  `candidate_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `cv` varchar(100) NOT NULL,
+  `position` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `candidates`
+--
+
+INSERT INTO `candidates` (`candidate_id`, `first_name`, `last_name`, `image`, `email`, `phone`, `address`, `cv`, `position`) VALUES
+(1, 'Bernard', 'Gwatura', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(2, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(3, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(4, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(5, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(6, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(7, 'phionah', 'chikwene', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(8, 'Bernard', 'Gwatura', '', 'beed@bee.com', '0779575788', '', '0', ''),
+(9, 'Bernard', 'Gwatura', '', 'bee@bee.com', '0779575788', '', '0', ''),
+(10, 'Mbongeni', 'Moyo', '', 'mbongz@ebongs.com', '0779575788', '', '0', ''),
+(11, 'Mbongeni', 'Moyo', '', 'mbongz@ebongs.com', '0779575788', '', '0', ''),
+(12, 'Mbongeni', 'Moyo', '', 'mbongz@ebongs.com', '0779575788', '', '0', ''),
+(13, 'Jin', 'Joe', '', 'jin@gedza.com', '0779575788', '', '0', ''),
+(14, 'Gin', 'Tonic', '', 'jin@gedza.com', '0779575788', '', '0', ''),
+(15, 'Mbongeni', 'Moyo', '', 'mbongz@ebongs.com', '0779575788', '', '0', ''),
+(16, 'Bernard', 'Panashe', '', 'bernardgwatura19@hombe.com', '0780632355', '', '0', ''),
+(17, 'Bernard', 'Gwatura', '', 'bernardgwatura19@gmail.com', '0779575788', '', '0', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `lod_id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `is_admin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`lod_id`, `email`, `password`, `is_admin`) VALUES
+(1, 'bee@bee.com', '1234', 0),
+(2, 'bee@bee.com', '5678', 0),
+(3, 'bee@bee.com', '7890', 0),
+(4, 'bee@bee.com', '1234', 0),
+(5, 'bee@bee.com', '1234', 0),
+(6, 'bee@bee.com', '1233', 0),
+(7, 'bee@bee.com', '1234', 0),
+(8, 'beed@bee.com', '1234', 0),
+(9, 'bee@bee.com', '1234', 0),
+(10, 'mbongz@ebongs.com', '1234', 0),
+(11, 'mbongz@ebongs.com', '123456', 0),
+(12, 'mbongz@ebongs.com', '121213', 0),
+(13, 'jin@gedza.com', '345454', 0),
+(14, 'jin@gedza.com', '12345', 0),
+(15, 'mbongz@ebongs.com', '1234', 0),
+(16, 'bernardgwatura19@hombe.com', '1234', 0),
+(17, 'bernardgwatura19@gmail.com', '1234', 0),
+(18, 'new@admin.co.zw', '1234', 1),
+(19, 'new@admin.co.zw', '1234', 1),
+(100, 'admin@refsys.com', '1234', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reference`
+--
+
+CREATE TABLE `reference` (
+  `ref_id` int(11) NOT NULL,
+  `candidate_id` int(11) NOT NULL,
+  `ref_name` varchar(50) NOT NULL,
+  `position` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
+  `date_sent` datetime(1) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reference`
+--
+
+INSERT INTO `reference` (`ref_id`, `candidate_id`, `ref_name`, `position`, `phone`, `email`, `company_name`, `date_sent`, `status`) VALUES
+(1, 16, 'bee', '', '0779575788', 'bernardgwatura19@hombe.com', 'Ihombe', '2023-09-13 11:46:22.0', ''),
+(2, 17, 'phionah', '', '0779575788', 'bernardgwatura19@gmail.com', 'Bernat Logistics', '2023-09-21 10:42:06.0', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_responses`
+--
+
+CREATE TABLE `ref_responses` (
+  `response_id` int(11) NOT NULL,
+  `ref_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `response` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ref_responses`
+--
+
+INSERT INTO `ref_responses` (`response_id`, `ref_id`, `question_id`, `response`) VALUES
+(18, 111, 18, 'hombe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scores`
+--
+
+CREATE TABLE `scores` (
+  `candidate_id` int(11) NOT NULL,
+  `problem_solving` varchar(200) NOT NULL,
+  `comm_skills` varchar(200) NOT NULL,
+  `time_mangmt` varchar(200) NOT NULL,
+  `creativity` varchar(200) NOT NULL,
+  `will_to_learn` varchar(200) NOT NULL,
+  `team_work` varchar(200) NOT NULL,
+  `reliability` varchar(200) NOT NULL,
+  `ref_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `scores`
+--
+
+INSERT INTO `scores` (`candidate_id`, `problem_solving`, `comm_skills`, `time_mangmt`, `creativity`, `will_to_learn`, `team_work`, `reliability`, `ref_id`) VALUES
+(0, '', '', '', '', '', '', '21', 111),
+(0, '', '50', '50', '', '', '', '21', 111),
+(0, '', '50', '50', '', '', '', '21', 117),
+(0, '', '50', '50', '', '', '', '21', 117),
+(0, '', '50', '50', '', '', '', '21', 117),
+(0, '60', '50', '73', '37', '82', '87', '92', 117);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sentiments`
+--
+
+CREATE TABLE `sentiments` (
+  `candidate_id` int(11) NOT NULL,
+  `ref_id` int(11) NOT NULL,
+  `sentiment` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `candidates`
+--
+ALTER TABLE `candidates`
+  ADD PRIMARY KEY (`candidate_id`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`lod_id`);
+
+--
+-- Indexes for table `reference`
+--
+ALTER TABLE `reference`
+  ADD PRIMARY KEY (`ref_id`);
+
+--
+-- Indexes for table `ref_responses`
+--
+ALTER TABLE `ref_responses`
+  ADD PRIMARY KEY (`response_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `lod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
