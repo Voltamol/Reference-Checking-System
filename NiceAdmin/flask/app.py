@@ -108,9 +108,6 @@ def classify_sentiment(user_input):
 #     labels=['negative','positive','neutral']
 #     return dict(zip(labels,probabilities))
 
-@app.route("/",methods=['GET'])
-def index():
-    return render_template('questionaire.html') 
 
 @app.route('/predict/<candidate_name>/<respondent>',methods=['POST'])
 def predict(candidate_name,respondent):
@@ -144,13 +141,7 @@ def predict(candidate_name,respondent):
     return redirect(url_for('thank_you'))
 
 # Define the route for model prediction and saving to the database
-@app.route("/",methods=['GET'])
-def index():
-    return render_template('questionaire.html') 
 
-@app.route("/thank_you",methods=['GET'])
-def thank_you():
-    return render_template('thank_you.html')
     
 
 @app.route('/report',methods=['GET'])
