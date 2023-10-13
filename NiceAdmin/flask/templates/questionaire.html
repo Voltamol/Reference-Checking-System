@@ -82,7 +82,7 @@
       </nav>
     </div><!-- End Page Title -->
    
-    <form class="container-fluid" method="POST" action="{{ url_for('predict') }}">
+    <form class="container-fluid" method="POST" action="{{ url_for('predict',candidate_name=candidate_name,respondent=respondent) }}">
       <div class="card">
         <div class="card-body"><br>
           <div>

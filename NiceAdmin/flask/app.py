@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify,render_template
+from flask import Flask, request, jsonify,render_template,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 import pickle
 import numpy as np
@@ -108,14 +108,12 @@ def classify_sentiment(user_input):
 #     labels=['negative','positive','neutral']
 #     return dict(zip(labels,probabilities))
 
-@app.route('/', methods=['GET','POST'])
-def ask_question():
-    return render_template('questionaire.html')
+@app.route("/",methods=['GET'])
+def index():
+    return render_template('questionaire.html') 
 
-# Define the route for model prediction and saving to the database
-@app.route('/predict/<str:candidate_name>', methods=['POST'])
-def predict(candidate_name):
-    
+@app.route('/predict/<candidate_name>/<respondent>',methods=['POST'])
+def predict(candidate_name,respondent):
     opinion = request.form.get("opinion")
     scores_={
         "problem_solving":request.form.get("problem_solving"),
@@ -128,10 +126,10 @@ def predict(candidate_name):
     }
     # Preprocess the input data (if required)
     # ...
-
     # Perform prediction using the loaded model
     sentiment= classify_sentiment(opinion)
-    sentiments={'response':opinion, **sentiment}
+    sentiments={'response':opinion,'candidate_name':candidate_name ,'respondent':respondent,**sentiment}
+    scores={'candidate_name':candidate_name,**scores_}
     # Save the response and sentiment to the database
     sentiment_entry = Sentiment(**sentiments)
     scores=Scores(**scores_)
@@ -139,7 +137,21 @@ def predict(candidate_name):
     db.session.add(scores)
     db.session.commit()
     # Return the response as JSON
-    return jsonify({'sentiments':sentiments,"scores":scores_})
+    """return jsonify({
+        'status': 'success',
+        'message': 'Response successfully recorded'
+    })"""
+    return redirect(url_for('thank_you'))
+
+# Define the route for model prediction and saving to the database
+@app.route("/",methods=['GET'])
+def index():
+    return render_template('questionaire.html') 
+
+@app.route("/thank_you",methods=['GET'])
+def thank_you():
+    return render_template('thank_you.html')
+    
 
 @app.route('/report',methods=['GET'])
 def report():
