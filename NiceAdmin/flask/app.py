@@ -89,6 +89,10 @@ def predict():
     # Return the response as JSON
     return jsonify({'sentiments':sentiments})
 
+@app.route('/report',methods=['GET'])
+def report():
+    return render_template('Candidate Reports.html')
+
 # Define the main entry point of the application
 if __name__ == '__main__':
     # Run the Flask app
